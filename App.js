@@ -1,15 +1,25 @@
 import * as React from "react"
-import { View, Text } from "react-native"
+import { View } from "react-native"
 import { NavigationContainer } from '@react-navigation/native'
 import StackNav from './navigation/StackNav'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import decks from './reducers/decks'
+import middleware from './middleware'
 
-//pull sin the stacknav to show the default screens
+/**
+ * pulls in the stacknav to show the default screens
+ * uses redux provider to make connecting to store availbel within the app
+ * creates the store to pass in with relevant reducer and middleware
+ */
 export default function App() {
   return (
-    <View style={{ flex: 1 }}>
-      <NavigationContainer>
-        <StackNav />
-      </NavigationContainer>
-    </View>
+    <Provider store={createStore(decks, middleware)}>
+      <View style={{ flex: 1 }}>
+        <NavigationContainer>
+          <StackNav />
+        </NavigationContainer>
+      </View>
+    </Provider>
   )
 }

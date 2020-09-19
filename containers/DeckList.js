@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import DeckContainer from '../presentation/DeckContainer'
+import { connect } from 'react-redux'
+import { receiveData } from '../actions/decks'
 
 //A list of all the available decks, each has a container showing the initial data
 //navigation is sent through as the container doesn't inherit that component
 class DeckList extends Component {
+    //dummy init data to test redux
+    componentDidMount() {
+        this.props.dispatch(receiveData({
+            java: {
+                title: 'java',
+                cards: []
+            }
+        }))
+    }
+
     render() {
         return(
             <View>
@@ -14,4 +26,5 @@ class DeckList extends Component {
     }
 }
 
-export default DeckList
+//connect to redux store in order to grab initial data and create decklist
+export default connect()(DeckList)
