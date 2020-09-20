@@ -7,7 +7,7 @@ const DeckContainer = ({ navigation, title, cardNum }) => {
  return(
      <View>
          <Text>Deck Container</Text>
-         <TouchableOpacity onPress={() => navigation.navigate('DeckDetails')}>
+         <TouchableOpacity onPress={() => navigation.navigate('DeckDetails', { id: title })}>
              <Text>{title}</Text>
              <Text>{cardNum}</Text>
          </TouchableOpacity>

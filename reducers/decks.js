@@ -26,7 +26,7 @@ const decks = (state = {}, action) => {
                 ...state,
                 [deckId]: {
                     ...state[deckId],
-                    cards: state[deckId].votes.concat([card])
+                    cards: state[deckId].cards.concat([card])
                 }
             }
         default:

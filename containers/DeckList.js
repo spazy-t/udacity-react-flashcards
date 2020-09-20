@@ -30,7 +30,7 @@ class DeckList extends Component {
 
     render() {
         const { currentDecks } = this.props
-
+        //TODO: try version with keys to maintain order when updated
         return(
             <View>
                 {Object.values(currentDecks).map((deck) => (
