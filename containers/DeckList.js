@@ -8,7 +8,20 @@ import { receiveData } from '../actions/decks'
 const dummyData = {
     java: {
         title: 'java',
-        cards: []
+        cards: [
+            {
+                question: 'Will trump get a second term?',
+                answer: 'No!'
+            },
+            {
+                question: 'whic is better: Android or iOS?',
+                answer: 'Android'
+            },
+            {
+                question: 'front end or back end developer?',
+                answer: 'front'
+            },
+        ]
     },
     javaScript: {
         title: 'javaScript',
