@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import Score from '../presentation/Score'
+import NoCards from '../presentation/NoCards'
 
 class Quiz extends Component {
     //local state to hold score to show at the end of quiz
@@ -9,6 +11,7 @@ class Quiz extends Component {
         cardNum: 0,
         showAnswer: false
     }
+
     //helper to move to next card q+a
     nextCard = () => {
         this.setState((prevState) => ({
@@ -34,25 +37,35 @@ class Quiz extends Component {
             }))
         }
         //make sure we're not trying to show cards that don't exist i.e. not past number of cards in deck
-        if((cardNum + 1) < quizCards.length) {
+        if(cardNum < quizCards.length) {
             this.nextCard()
         }
-        //TODO: show score screen if all cards done
     }
 
     render() {
         //grab props and local state in order to show relevant information in ui dependant on user interaction
-        const { quizCards} = this.props
+        const { quizCards } = this.props
         const { cardNum, showAnswer, score } = this.state
+
+        //if all cards have been shown, show score for the quiz
+        //if no cards in the deck show NoCards component
+        if(quizCards.length === 0) {
+            return(
+                <NoCards />
+            )
+        } else if(cardNum === quizCards.length) {
+            return(
+                <Score score={score} totalCards={quizCards.length} />
+            )
+        }
         //show card question and all response buttons, if the user clicks to show answer show
         //the answer at top and change button text
         return(
             <View>
-                <Text>{score}</Text>
-                {showAnswer === false
-                    ? <Text>{quizCards[cardNum].question}</Text>
-                    : <Text>{quizCards[cardNum].answer}</Text>
-                }
+                <Text>{showAnswer === false
+                    ? quizCards[cardNum].question
+                    : quizCards[cardNum].answer
+                }</Text>
                 <TouchableOpacity onPress={this.handleCardFlip}>
                     <Text>{showAnswer === false
                             ? 'Answer'
@@ -60,14 +73,10 @@ class Quiz extends Component {
                         }
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    ref='correct'
-                    onPress={() => this.handleCardComplete('correct')}>
+                <TouchableOpacity onPress={() => this.handleCardComplete('correct')}>
                     <Text>Correct</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    ref='incorrect'
-                    onPress={this.handleCardComplete}>
+                <TouchableOpacity onPress={this.handleCardComplete}>
                     <Text>Incorrect</Text>
                 </TouchableOpacity>
             </View>
