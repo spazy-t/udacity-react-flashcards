@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
+import { StyledTouchable } from '../styled/common'
 
 class Quiz extends Component {
     //local state to hold score to show at the end of quiz
@@ -66,19 +67,19 @@ class Quiz extends Component {
                     ? quizCards[cardNum].question
                     : quizCards[cardNum].answer
                 }</Text>
-                <TouchableOpacity onPress={this.handleCardFlip}>
+                <StyledTouchable onPress={this.handleCardFlip}>
                     <Text>{showAnswer === false
                             ? 'Answer'
                             : 'Question'
                         }
                     </Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handleCardComplete('correct')}>
+                </StyledTouchable>
+                <StyledTouchable onPress={() => this.handleCardComplete('correct')}>
                     <Text>Correct</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleCardComplete}>
+                </StyledTouchable>
+                <StyledTouchable onPress={this.handleCardComplete}>
                     <Text>Incorrect</Text>
-                </TouchableOpacity>
+                </StyledTouchable>
             </View>
         )
     }
