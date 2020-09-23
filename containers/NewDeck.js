@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions/decks'
+import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
 
 class NewDeck extends Component {
     state = {
@@ -32,15 +32,15 @@ class NewDeck extends Component {
 
     render() {
         return(
-            <View>
-                <TextInput
+            <StyledView>
+                <StyledInput
                     placeholder='Enter deck title'
                     value={this.state.title}
                     onChangeText={this.textChanged} />
-                <TouchableOpacity onPress={this.onSubmit}>
-                    <Text>SUBMIT</Text>
-                </TouchableOpacity>
-            </View>
+                <StyledSubmitBtn onPress={this.onSubmit}>
+                    <StyledSubmitText>SUBMIT</StyledSubmitText>
+                </StyledSubmitBtn>
+            </StyledView>
         )
     }
 }

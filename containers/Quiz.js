@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
-import { StyledTouchable } from '../styled/common'
+import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
 
 class Quiz extends Component {
     //local state to hold score to show at the end of quiz
@@ -62,11 +62,11 @@ class Quiz extends Component {
         //show card question and all response buttons, if the user clicks to show answer show
         //the answer at top and change button text
         return(
-            <View>
-                <Text>{showAnswer === false
+            <StyledView>
+                <StyledTitle>{showAnswer === false
                     ? quizCards[cardNum].question
                     : quizCards[cardNum].answer
-                }</Text>
+                }</StyledTitle>
                 <StyledTouchable onPress={this.handleCardFlip}>
                     <Text>{showAnswer === false
                             ? 'Answer'
@@ -80,7 +80,7 @@ class Quiz extends Component {
                 <StyledTouchable onPress={this.handleCardComplete}>
                     <Text>Incorrect</Text>
                 </StyledTouchable>
-            </View>
+            </StyledView>
         )
     }
 }

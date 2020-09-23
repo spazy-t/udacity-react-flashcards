@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
+import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../actions/decks'
+import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
 
 class NewCard extends Component {
     state = {
@@ -36,20 +37,20 @@ class NewCard extends Component {
         const { id } = this.props
 
         return(
-            <View>
+            <StyledView>
                 <Text>{id}</Text>
-                <TextInput
+                <StyledInput
                     placeholder='Question'
                     value={question}
                     onChangeText={(text) => this.setState({ question: text })} />
-                <TextInput
+                <StyledInput
                     placeholder='Answer'
                     value={answer}
                     onChangeText={(text) => this.setState({ answer: text })} />
-                <TouchableOpacity onPress={this.handleSubmit}>
-                    <Text>SUBMIT</Text>
-                </TouchableOpacity>
-            </View>
+                <StyledSubmitBtn onPress={this.handleSubmit}>
+                    <StyledSubmitText>SUBMIT</StyledSubmitText>
+                </StyledSubmitBtn>
+            </StyledView>
         )
     }
 }

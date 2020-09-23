@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import DeckContainer from '../presentation/DeckContainer'
 import { connect } from 'react-redux'
 import { receiveData } from '../actions/decks'
+import { StyledView } from '../styled/common'
 
 //TODO: remove dummy data when AsyncStorage is set up
 const dummyData = {
@@ -45,7 +45,7 @@ class DeckList extends Component {
         const { currentDecks } = this.props
         //TODO: try version with keys to maintain order when updated
         return(
-            <View>
+            <StyledView>
                 {Object.values(currentDecks).map((deck) => (
                     <DeckContainer
                         key={deck.title}
@@ -53,7 +53,7 @@ class DeckList extends Component {
                         cardNum={deck.cards.length}
                         navigation={this.props.navigation} />
                 ))}
-            </View>
+            </StyledView>
         )
     }
 }
