@@ -12,10 +12,10 @@ const DeckDetails = (props) => {
             <StyledTitle>{deckToShow.title}</StyledTitle>
             <Text>{deckToShow.cards.length} Cards</Text>
             <StyledTouchable onPress={() => navigation.navigate('Quiz', { id: deckToShow.title})}>
-                <Text>QUIZ</Text>
+                <Text>Start Quiz</Text>
             </StyledTouchable>
             <StyledTouchable onPress={() => navigation.navigate('NewCard', { id: deckToShow.title })}>
-                <Text>NEW CARD</Text>
+                <Text>Add Card</Text>
             </StyledTouchable>
         </StyledView>
     )

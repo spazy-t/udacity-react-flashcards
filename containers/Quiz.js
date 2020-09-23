@@ -43,9 +43,18 @@ class Quiz extends Component {
         }
     }
 
+    //if quiz is completed and user presses restart quiz, reset the state to go back to first card
+    resetQuiz = () => {
+        this.setState(() => ({
+            score: 0,
+            cardNum: 0,
+            showAnswer: false
+        }))
+    }
+
     render() {
         //grab props and local state in order to show relevant information in ui dependant on user interaction
-        const { quizCards } = this.props
+        const { quizCards, navigation, id } = this.props
         const { cardNum, showAnswer, score } = this.state
 
         //if all cards have been shown, show score for the quiz
@@ -56,7 +65,15 @@ class Quiz extends Component {
             )
         } else if(cardNum === quizCards.length) {
             return(
-                <Score score={score} totalCards={quizCards.length} />
+                <StyledView>
+                    <Score score={score} totalCards={quizCards.length} />
+                    <StyledTouchable onPress={this.resetQuiz}>
+                        <Text>Restart Quiz</Text>
+                    </StyledTouchable>
+                    <StyledTouchable onPress={() => navigation.navigate('DeckDetails', { id: id })}>
+                        <Text>Back to Deck</Text>
+                    </StyledTouchable>
+                </StyledView>
             )
         }
         //show card question and all response buttons, if the user clicks to show answer show
@@ -69,8 +86,8 @@ class Quiz extends Component {
                 }</StyledTitle>
                 <StyledTouchable onPress={this.handleCardFlip}>
                     <Text>{showAnswer === false
-                            ? 'Answer'
-                            : 'Question'
+                            ? 'Show Answer'
+                            : 'Show Question'
                         }
                     </Text>
                 </StyledTouchable>
@@ -90,7 +107,8 @@ function mapStateToProps(state, { route }) {
     const { id } = route.params
 
     return {
-        quizCards: state[id].cards
+        quizCards: state[id].cards, 
+        id: id
     }
 }
 

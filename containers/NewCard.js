@@ -9,7 +9,8 @@ class NewCard extends Component {
         question: '',
         answer: ''
     }
-    //TODO: see why the list screen reoreders the list whena new card is added to a few decks
+    //TODO: see why the list screen reoreders the list when a new card is added to a few decks
+    //called when submit btn is pressed, adds new card to deck and navigates back to deck
     handleSubmit = () => {
         const { question, answer } = this.state
         const { dispatch, id, navigation } = this.props
@@ -23,6 +24,7 @@ class NewCard extends Component {
                 }
             }))
 
+            //clear the input fields
             this.setState(() => ({
                 question: '',
                 answer: ''
@@ -36,6 +38,9 @@ class NewCard extends Component {
         const { question, answer } = this.state
         const { id } = this.props
 
+        //should the submit btn be disabled
+        const disabledSubmit = question === '' || answer === ''
+
         return(
             <StyledView>
                 <Text>{id}</Text>
@@ -47,7 +52,7 @@ class NewCard extends Component {
                     placeholder='Answer'
                     value={answer}
                     onChangeText={(text) => this.setState({ answer: text })} />
-                <StyledSubmitBtn onPress={this.handleSubmit}>
+                <StyledSubmitBtn onPress={this.handleSubmit} disabled={disabledSubmit} style={disabledSubmit ? {opacity: 0.2} : null}>
                     <StyledSubmitText>SUBMIT</StyledSubmitText>
                 </StyledSubmitBtn>
             </StyledView>

@@ -8,6 +8,7 @@ class NewDeck extends Component {
         title: ''
     }
 
+    //called when new deck is submitted, adds to store state and navigates to new deck
     onSubmit = () => {
         const { title } = this.state
         const { navigation } = this.props
@@ -20,10 +21,11 @@ class NewDeck extends Component {
                 title: ''
             }))
 
-            navigation.navigate('DeckList')
+            navigation.navigate('DeckDetails', { id: title })
         }
     }
 
+    //updates local state when title is typed in by user
     textChanged = (text) => {
         this.setState(() => ({
             title: text
@@ -31,14 +33,17 @@ class NewDeck extends Component {
     }
 
     render() {
+        //should the submit btn be disabled
+        const disabledSubmit = this.state.title === ''
+
         return(
             <StyledView>
                 <StyledInput
                     placeholder='Enter deck title'
                     value={this.state.title}
                     onChangeText={this.textChanged} />
-                <StyledSubmitBtn onPress={this.onSubmit}>
-                    <StyledSubmitText>SUBMIT</StyledSubmitText>
+                <StyledSubmitBtn onPress={this.onSubmit} disabled={disabledSubmit} style={disabledSubmit ? {opacity: 0.2} : null}>
+                    <StyledSubmitText>Create Deck</StyledSubmitText>
                 </StyledSubmitBtn>
             </StyledView>
         )
