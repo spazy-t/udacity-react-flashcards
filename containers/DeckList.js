@@ -46,11 +46,11 @@ class DeckList extends Component {
         //TODO: try version with keys to maintain order when updated
         return(
             <StyledView>
-                {Object.values(currentDecks).map((deck) => (
+                {Object.keys(currentDecks).map((deck) => (
                     <DeckContainer
-                        key={deck.title}
-                        title={deck.title}
-                        cardNum={deck.cards.length}
+                        key={currentDecks[deck].title}
+                        title={currentDecks[deck].title}
+                        cardNum={currentDecks[deck].cards.length}
                         navigation={this.props.navigation} />
                 ))}
             </StyledView>
