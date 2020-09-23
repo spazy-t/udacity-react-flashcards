@@ -9,11 +9,12 @@ class NewCard extends Component {
         question: '',
         answer: ''
     }
-    //TODO: see why the list screen reoreders the list when a new card is added to a few decks
+    
     //called when submit btn is pressed, adds new card to deck and navigates back to deck
     handleSubmit = () => {
         const { question, answer } = this.state
-        const { dispatch, id, navigation } = this.props
+        const { dispatch, navigation } = this.props
+        const { id } = this.props.route.params
 
         if(question !== '' && answer !== '') {
             dispatch(addCard({
@@ -36,7 +37,7 @@ class NewCard extends Component {
 
     render() {
         const { question, answer } = this.state
-        const { id } = this.props
+        const { id } = this.props.route.params
 
         //should the submit btn be disabled
         const disabledSubmit = question === '' || answer === ''
@@ -60,11 +61,4 @@ class NewCard extends Component {
     }
 }
 
-///TODO: see if we need to have state first here?
-function mapStateToProps(state, { route }) {
-    return {
-        id: route.params.id
-    }
-}
-
-export default connect(mapStateToProps)(NewCard)
+export default connect()(NewCard)

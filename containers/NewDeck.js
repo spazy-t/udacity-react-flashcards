@@ -12,7 +12,7 @@ class NewDeck extends Component {
     onSubmit = () => {
         const { title } = this.state
         const { navigation } = this.props
-        //TODO: instead of if only allow to submit when title is not blank and therefore not disabled
+        
         //TODO: call a thunk action crestor instead when AysncStorage is implemented
         if(title !== '') {
             this.props.dispatch(addDeck(title))
