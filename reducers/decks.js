@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK, ADD_CARD } from '../constants/actionTypes'
+import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK } from '../constants/actionTypes'
 
 /**
  * reducer to take in relevant actions and place in data in cloned store obj before replacing the current store state
@@ -18,6 +18,13 @@ const decks = (state = {}, action) => {
                     title: action.newDeck,
                     cards: []
                 }
+            }
+        case DELETE_DECK:
+            const currentDecks = { ...state }
+            const updatedDecks = currentDecks.filter((deck) => deck !== action.deckId)
+            //TODO: sort the filter function that breaks
+            return {
+                ...updatedDecks
             }
         case ADD_CARD:
             const { deckId, card } = action.cardInfo
