@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { Text, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
@@ -57,8 +57,21 @@ class Quiz extends Component {
     handleDeleteCard = () => {
         const { dispatch, id } = this.props
         const { cardNum } = this.state
-        //TODO: show warning before deleting
-        dispatch(deleteCard({ deck: id, cardNum: cardNum }))
+        
+        //show warning before deleting
+        Alert.alert('Delete Card?',
+            'Are you sure you want to delete this card?',
+            [{
+                text: 'Cancel',
+                onPress: () => console.log('cancel delete card'),
+                style: 'cancel'
+            },
+        {
+            text: 'OK',
+            onPress: () => {
+                dispatch(deleteCard({ deck: id, cardNum: cardNum }))
+            }
+        }])
     }
 
     render() {

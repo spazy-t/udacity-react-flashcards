@@ -24,7 +24,7 @@ const decks = (state = {}, action) => {
         case DELETE_DECK:
             let currentDecks = { ...state }
             delete currentDecks[action.deckId]
-            //TODO: sort the filter function that breaks
+            
             return currentDecks
         case ADD_CARD:
             const { deckId, card } = action.cardInfo

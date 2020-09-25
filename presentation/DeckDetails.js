@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { Text, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
 import { deleteDeck } from '../actions/decks'
@@ -18,10 +18,23 @@ class DeckDetails extends Component {
     //deletes deck when delete btn pressed
     handleDelete = () => {
         const { navigation, dispatch, deckToShow } = this.props
-        //TODO: show warning before navigating and deleting
-        navigation.goBack()
-
-        dispatch(deleteDeck(deckToShow.title))
+        
+        //show warning before navigating and deleting
+        Alert.alert('Delete Deck?',
+            'Are you sure you want to delete this deck?',
+            [{
+                text: 'cancel',
+                onPress: () => console.log('cancel deck delete'),
+                style: 'cancel'
+            },
+            {
+                text: 'OK',
+                onPress: () => {
+                    navigation.goBack()
+                    dispatch(deleteDeck(deckToShow.title))
+                }
+            }]
+        )
     }
 
     render() {
