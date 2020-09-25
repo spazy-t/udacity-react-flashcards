@@ -57,7 +57,7 @@ class Quiz extends Component {
     handleDeleteCard = () => {
         const { dispatch, id } = this.props
         const { cardNum } = this.state
-        
+
         //show warning before deleting
         Alert.alert('Delete Card?',
             'Are you sure you want to delete this card?',
@@ -66,12 +66,13 @@ class Quiz extends Component {
                 onPress: () => console.log('cancel delete card'),
                 style: 'cancel'
             },
-        {
-            text: 'OK',
-            onPress: () => {
-                dispatch(deleteCard({ deck: id, cardNum: cardNum }))
-            }
-        }])
+            {
+                text: 'OK',
+                onPress: () => {
+                    dispatch(deleteCard({ deck: id, cardNum: cardNum }))
+                }
+            }]
+        )
     }
 
     render() {

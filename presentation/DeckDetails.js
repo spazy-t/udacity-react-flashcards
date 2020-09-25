@@ -8,7 +8,7 @@ import { deleteDeck } from '../actions/decks'
 class DeckDetails extends Component {
     //stops the component from rerendering a deck that has been deleted
     shouldComponentUpdate(nextProps) {
-        if(this.props.deckToShow !== nextProps.deckToShow) {
+        if(nextProps.deckToShow === undefined) {
             return false
         } else {
             return true
