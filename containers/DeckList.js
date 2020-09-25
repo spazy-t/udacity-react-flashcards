@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DeckContainer from '../presentation/DeckContainer'
 import { connect } from 'react-redux'
 import { receiveData } from '../actions/decks'
-import { StyledView } from '../styled/common'
+import { StyledView, StyledTouchable } from '../styled/common'
 
 //TODO: remove dummy data when AsyncStorage is set up
 const dummyData = {
@@ -42,16 +42,16 @@ class DeckList extends Component {
     }
 
     render() {
-        const { currentDecks } = this.props
+        const { currentDecks, navigation } = this.props
         //TODO: stop reordering when a new card is added
         return(
             <StyledView>
                 {Object.keys(currentDecks).map((deck) => (
-                    <DeckContainer
-                        key={currentDecks[deck].title}
-                        title={currentDecks[deck].title}
-                        cardNum={currentDecks[deck].cards.length}
-                        navigation={this.props.navigation} />
+                    <StyledTouchable key={deck} onPress={() => navigation.navigate('DeckDetails', { id: deck })}>
+                        <DeckContainer
+                            title={currentDecks[deck].title}
+                            cardNum={currentDecks[deck].cards.length} />
+                    </StyledTouchable>
                 ))}
             </StyledView>
         )
