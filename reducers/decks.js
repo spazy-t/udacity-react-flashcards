@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK } from '../constants/actionTypes'
+import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK, DELETE_CARD } from '../constants/actionTypes'
 
 /**
  * reducer to take in relevant actions and place in data in cloned store obj before replacing the current store state
@@ -19,13 +19,13 @@ const decks = (state = {}, action) => {
                     cards: []
                 }
             }
+
+        //https://github.com/ayushmaz/mobile-flashcards/blob/master/reducers/index.js
         case DELETE_DECK:
-            const currentDecks = { ...state }
-            const updatedDecks = currentDecks.filter((deck) => deck !== action.deckId)
+            let currentDecks = { ...state }
+            delete currentDecks[action.deckId]
             //TODO: sort the filter function that breaks
-            return {
-                ...updatedDecks
-            }
+            return currentDecks
         case ADD_CARD:
             const { deckId, card } = action.cardInfo
 
@@ -34,6 +34,16 @@ const decks = (state = {}, action) => {
                 [deckId]: {
                     ...state[deckId],
                     cards: state[deckId].cards.concat([card])
+                }
+            }
+        case DELETE_CARD:
+            const { deck, cardNum } = action.cardInfo
+
+            return {
+                ...state,
+                [deck]: {
+                    ...state[deck],
+                    cards: state[deck].cards.filter((card, index) => index !== cardNum)
                 }
             }
         default:

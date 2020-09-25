@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK } from '../constants/actionTypes'
+import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK, DELETE_CARD } from '../constants/actionTypes'
 
 export const receiveData = (decksData) => {
     return {
@@ -21,9 +21,16 @@ export const addCard = (cardInfo) => {
     }
 }
 
-export const deleteCard = (deckId) => {
+export const deleteDeck = (deckId) => {
     return {
         type: DELETE_DECK,
         deckId
+    }
+}
+
+export const deleteCard = (cardInfo) => {
+    return {
+        type: DELETE_CARD,
+        cardInfo
     }
 }

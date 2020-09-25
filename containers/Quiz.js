@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
 import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
+import { deleteCard } from '../actions/decks'
 
 class Quiz extends Component {
     //local state to hold score to show at the end of quiz
@@ -52,6 +53,14 @@ class Quiz extends Component {
         }))
     }
 
+    //handles dispatch of action to delete card from store on Delete btn press
+    handleDeleteCard = () => {
+        const { dispatch, id } = this.props
+        const { cardNum } = this.state
+        //TODO: show warning before deleting
+        dispatch(deleteCard({ deck: id, cardNum: cardNum }))
+    }
+
     render() {
         //grab props and local state in order to show relevant information in ui dependant on user interaction
         const { quizCards, navigation, id } = this.props
@@ -96,6 +105,9 @@ class Quiz extends Component {
                 </StyledTouchable>
                 <StyledTouchable onPress={this.handleCardComplete}>
                     <Text>Incorrect</Text>
+                </StyledTouchable>
+                <StyledTouchable onPress={this.handleDeleteCard}>
+                    <Text>Delete Card</Text>
                 </StyledTouchable>
             </StyledView>
         )

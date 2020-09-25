@@ -2,15 +2,26 @@ import React, { Component } from 'react'
 import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
-import { deleteCard } from '../actions/decks'
+import { deleteDeck } from '../actions/decks'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
 class DeckDetails extends Component {
+    //stops the component from rerendering a deck that has been deleted
+    shouldComponentUpdate(nextProps) {
+        if(this.props.deckToShow !== nextProps.deckToShow) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //deletes deck when delete btn pressed
     handleDelete = () => {
         const { navigation, dispatch, deckToShow } = this.props
-        navigation.navigate('Home')
+        //TODO: show warning before navigating and deleting
+        navigation.goBack()
 
-        dispatch(deleteCard(deckToShow.title))
+        dispatch(deleteDeck(deckToShow.title))
     }
 
     render() {
