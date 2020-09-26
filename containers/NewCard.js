@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text } from 'react-native'
 import { connect } from 'react-redux'
-import { addCard } from '../actions/decks'
+import { handleAddCardToDeck } from '../actions/decks'
 import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
 
 class NewCard extends Component {
@@ -16,8 +16,10 @@ class NewCard extends Component {
         const { dispatch, navigation } = this.props
         const { id } = this.props.route.params
 
+        //TODO: mapd dispatch to props
+        //if there is data to enter as a new card then call thunk action to store in Asyncstorage and then Store.
         if(question !== '' && answer !== '') {
-            dispatch(addCard({
+            dispatch(handleAddCardToDeck({
                 deckId: id,
                 card: {
                     question,

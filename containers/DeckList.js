@@ -1,49 +1,20 @@
 import React, { Component } from 'react'
 import DeckContainer from '../presentation/DeckContainer'
 import { connect } from 'react-redux'
-import { receiveData } from '../actions/decks'
+import { handleInitData } from '../actions/decks'
 import { StyledView, StyledTouchable } from '../styled/common'
-
-//TODO: remove dummy data when AsyncStorage is set up
-const dummyData = {
-    java: {
-        title: 'java',
-        cards: [
-            {
-                question: 'Will trump get a second term?',
-                answer: 'No!'
-            },
-            {
-                question: 'whic is better: Android or iOS?',
-                answer: 'Android'
-            },
-            {
-                question: 'front end or back end developer?',
-                answer: 'front'
-            },
-        ]
-    },
-    javaScript: {
-        title: 'javaScript',
-        cards: []
-    },
-    python: {
-        title: 'python',
-        cards: []
-    },
-}
 
 //A list of all the available decks, each has a container showing the initial data
 //navigation is sent through as the container doesn't inherit that component
 class DeckList extends Component {
-    //dummy init data to test redux
+    //calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
     componentDidMount() {
-        this.props.dispatch(receiveData(dummyData))
+        this.props.dispatch(handleInitData())
     }
 
     render() {
         const { currentDecks, navigation } = this.props
-        //TODO: stop reordering when a new card is added
+        //TODO: stop reordering when a new card is added, maybe a for loop instead of map?
         return(
             <StyledView>
                 {Object.keys(currentDecks).map((deck) => (

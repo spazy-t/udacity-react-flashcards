@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
 import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
-import { deleteCard } from '../actions/decks'
+import { handleDeleteCard } from '../actions/decks'
 
 class Quiz extends Component {
     //local state to hold score to show at the end of quiz
@@ -53,11 +53,12 @@ class Quiz extends Component {
         }))
     }
 
-    //handles dispatch of action to delete card from store on Delete btn press
+    //handles dispatch of action to delete card from store and AsyncStorage on Delete btn press
     handleDeleteCard = () => {
         const { dispatch, id } = this.props
         const { cardNum } = this.state
 
+        //TODO: map dispatch to props
         //show warning before deleting
         Alert.alert('Delete Card?',
             'Are you sure you want to delete this card?',
@@ -69,7 +70,7 @@ class Quiz extends Component {
             {
                 text: 'OK',
                 onPress: () => {
-                    dispatch(deleteCard({ deck: id, cardNum: cardNum }))
+                    dispatch(handleDeleteCard({ deck: id, cardNum: cardNum }))
                 }
             }]
         )

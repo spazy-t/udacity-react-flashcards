@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addDeck } from '../actions/decks'
+import { handleAddDeck } from '../actions/decks'
 import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
 
 class NewDeck extends Component {
@@ -13,9 +13,10 @@ class NewDeck extends Component {
         const { title } = this.state
         const { navigation } = this.props
         
-        //TODO: call a thunk action crestor instead when AysncStorage is implemented
+        //TODO: map dispatch to props
+        //if a new title has been entered then call thunk action to save new deck in asyncstorage and store state.
         if(title !== '') {
-            this.props.dispatch(addDeck(title))
+            this.props.dispatch(handleAddDeck(title))
 
             this.setState(() => ({
                 title: ''

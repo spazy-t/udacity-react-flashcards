@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
-import { deleteDeck } from '../actions/decks'
+import { handleDeleteDeck } from '../actions/decks'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
 class DeckDetails extends Component {
@@ -15,7 +15,7 @@ class DeckDetails extends Component {
         }
     }
     
-    //deletes deck when delete btn pressed
+    //deletes deck when delete btn pressed and user has validated the delete (via asyncStorage)
     handleDelete = () => {
         const { navigation, dispatch, deckToShow } = this.props
         
@@ -31,7 +31,7 @@ class DeckDetails extends Component {
                 text: 'OK',
                 onPress: () => {
                     navigation.goBack()
-                    dispatch(deleteDeck(deckToShow.title))
+                    dispatch(handleDeleteDeck(deckToShow.title))
                 }
             }]
         )
