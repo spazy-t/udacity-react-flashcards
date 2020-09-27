@@ -6,5 +6,6 @@ export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD = 'ADD_CARD'
 export const DELETE_DECK = 'DELETE_DECK'
 export const DELETE_CARD = 'DELETE_CARD'
-//AsyncStorage key for decks
+//AsyncStorage keys
 export const DECKS_STORAGE_KEY = 'FlashCards:decks'
+export const NOTIFICATION_KEY = 'FlashCards:notifications'

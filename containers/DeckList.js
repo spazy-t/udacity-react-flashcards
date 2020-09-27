@@ -3,11 +3,14 @@ import DeckContainer from '../presentation/DeckContainer'
 import { connect } from 'react-redux'
 import { handleInitData } from '../actions/decks'
 import { StyledView, StyledTouchable } from '../styled/common'
+import { setLocalNotification } from '../utils/helpers'
 
 //A list of all the available decks, each has a container showing the initial data
 //navigation is sent through as the container doesn't inherit that component
 class DeckList extends Component {//calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
     componentDidMount() {
+        //TODO: set local notification and check if one in storage currently
+        setLocalNotification()
         this.props.handleInitData()
     }
 
