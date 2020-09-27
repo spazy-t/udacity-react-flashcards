@@ -6,8 +6,7 @@ import { StyledView, StyledTouchable } from '../styled/common'
 
 //A list of all the available decks, each has a container showing the initial data
 //navigation is sent through as the container doesn't inherit that component
-class DeckList extends Component {
-    //calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
+class DeckList extends Component {//calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
     componentDidMount() {
         this.props.handleInitData()
     }
@@ -20,8 +19,8 @@ class DeckList extends Component {
                 {Object.keys(currentDecks).map((deck) => (
                     <StyledTouchable key={deck} onPress={() => navigation.navigate('DeckDetails', { id: deck })}>
                         <DeckContainer
-                            title={currentDecks[deck].title}
-                            cardNum={currentDecks[deck].cards.length} />
+                               title={currentDecks[deck].title}
+                               cardNum={currentDecks[deck].cards.length} />
                     </StyledTouchable>
                 ))}
             </StyledView>
