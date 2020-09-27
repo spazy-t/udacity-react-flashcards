@@ -55,10 +55,9 @@ class Quiz extends Component {
 
     //handles dispatch of action to delete card from store and AsyncStorage on Delete btn press
     handleDeleteCard = () => {
-        const { dispatch, id } = this.props
+        const { handleDeleteCard, id } = this.props
         const { cardNum } = this.state
 
-        //TODO: map dispatch to props
         //show warning before deleting
         Alert.alert('Delete Card?',
             'Are you sure you want to delete this card?',
@@ -70,7 +69,7 @@ class Quiz extends Component {
             {
                 text: 'OK',
                 onPress: () => {
-                    dispatch(handleDeleteCard({ deck: id, cardNum: cardNum }))
+                    handleDeleteCard({ deck: id, cardNum: cardNum })
                 }
             }]
         )
@@ -139,4 +138,4 @@ function mapStateToProps(state, { route }) {
     }
 }
 
-export default connect(mapStateToProps)(Quiz)
+export default connect(mapStateToProps, { handleDeleteCard })(Quiz)

@@ -9,7 +9,7 @@ import { StyledView, StyledTouchable } from '../styled/common'
 class DeckList extends Component {
     //calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
     componentDidMount() {
-        this.props.dispatch(handleInitData())
+        this.props.handleInitData()
     }
 
     render() {
@@ -36,4 +36,4 @@ function mapStateToProps(state) {
 }
 
 //connect to redux store in order to grab initial data and create decklist
-export default connect(mapStateToProps)(DeckList)
+export default connect(mapStateToProps, { handleInitData })(DeckList)

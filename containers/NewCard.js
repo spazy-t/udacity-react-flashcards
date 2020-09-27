@@ -13,19 +13,18 @@ class NewCard extends Component {
     //called when submit btn is pressed, adds new card to deck and navigates back to deck
     handleSubmit = () => {
         const { question, answer } = this.state
-        const { dispatch, navigation } = this.props
+        const { handleAddCardToDeck, navigation } = this.props
         const { id } = this.props.route.params
 
-        //TODO: mapd dispatch to props
         //if there is data to enter as a new card then call thunk action to store in Asyncstorage and then Store.
         if(question !== '' && answer !== '') {
-            dispatch(handleAddCardToDeck({
+            handleAddCardToDeck({
                 deckId: id,
                 card: {
                     question,
                     answer
                 }
-            }))
+            })
 
             //clear the input fields
             this.setState(() => ({
@@ -63,4 +62,4 @@ class NewCard extends Component {
     }
 }
 
-export default connect()(NewCard)
+export default connect(null, { handleAddCardToDeck })(NewCard)

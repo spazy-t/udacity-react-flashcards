@@ -17,7 +17,7 @@ class DeckDetails extends Component {
     
     //deletes deck when delete btn pressed and user has validated the delete (via asyncStorage)
     handleDelete = () => {
-        const { navigation, dispatch, deckToShow } = this.props
+        const { navigation, deckToShow, handleDeleteDeck } = this.props
         
         //show warning before navigating and deleting
         Alert.alert('Delete Deck?',
@@ -31,7 +31,7 @@ class DeckDetails extends Component {
                 text: 'OK',
                 onPress: () => {
                     navigation.goBack()
-                    dispatch(handleDeleteDeck(deckToShow.title))
+                    handleDeleteDeck(deckToShow.title)
                 }
             }]
         )
@@ -66,4 +66,4 @@ function mapStateToProps(state, { route }) {
     }
 }
 
-export default connect(mapStateToProps)(DeckDetails)
+export default connect(mapStateToProps, { handleDeleteDeck })(DeckDetails)

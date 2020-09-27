@@ -11,12 +11,11 @@ class NewDeck extends Component {
     //called when new deck is submitted, adds to store state and navigates to new deck
     onSubmit = () => {
         const { title } = this.state
-        const { navigation } = this.props
-        
-        //TODO: map dispatch to props
+        const { navigation, handleAddDeck } = this.props
+
         //if a new title has been entered then call thunk action to save new deck in asyncstorage and store state.
         if(title !== '') {
-            this.props.dispatch(handleAddDeck(title))
+            handleAddDeck(title)
 
             this.setState(() => ({
                 title: ''
@@ -51,4 +50,4 @@ class NewDeck extends Component {
     }
 }
 
-export default connect()(NewDeck)
+export default connect(null, { handleAddDeck })(NewDeck)
