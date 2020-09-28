@@ -3,16 +3,15 @@ import * as Permissions from 'expo-permissions'
 import AsyncStorage from '@react-native-community/async-storage'
 import { NOTIFICATION_KEY } from '../constants/actionTypes'
 
+//TODO: change timer for a day not a few seconds
 export function setLocalNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
         if(data === null) {
-            console.log('nah yeah')
             Permissions.askAsync(Permissions.NOTIFICATIONS)
             .then(({ status }) => {
                 if(status === 'granted') {
-                    console.log('permissions granted')
                     Notifications.cancelAllScheduledNotificationsAsync()
 
                     Notifications.setNotificationHandler({
@@ -23,23 +22,21 @@ export function setLocalNotification() {
                         })
                     })
 
+                    let tomorrow = new Date()
+                    tomorrow = tomorrow.getTime() + (1000)
+                    let notificationDate = new Date(tomorrow)
+
                     Notifications.scheduleNotificationAsync({
                         content: {
                             title: ' Time to study!',
                             body: 'complete at least one quiz for the day'
                         },
-                        trigger: {
-                            hour: 0,
-                            minute: 1,
-                            repeats: true
-                        }
+                        trigger: notificationDate
                     })
 
                     AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
                 }
             })
-        } else {
-            console.log('yeah nah!', data)
         }
     })
 }

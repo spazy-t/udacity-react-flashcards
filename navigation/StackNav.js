@@ -10,7 +10,7 @@ const Stack = createStackNavigator()
 //the main nav for the app which nests a tab nav for the default screen
 const StackNav = () => (
     <Stack.Navigator>
-        <Stack.Screen name="Home" component={TabNav} />
+        <Stack.Screen options={{ headerShown: false }} name="Home" component={TabNav} />
         <Stack.Screen name="DeckDetails" component={DeckDetails} />
         <Stack.Screen name="Quiz" component={Quiz} />
         <Stack.Screen name="NewCard" component={NewCard} />

@@ -7,6 +7,7 @@ import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 export default class Score extends Component {
     componentDidMount() {
         clearLocalNotification()
+        .then(setLocalNotification())
     }
 
     render() {

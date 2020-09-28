@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import { Text, Alert, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
+import { StyledTouchable, StyledTitle, StyledView } from '../styled/common'
 import { handleDeleteDeck } from '../actions/decks'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
 class DeckDetails extends Component {
     state = {
-        pos: new Animated.ValueXY({x: 0, y: -200})
+        pos: new Animated.ValueXY({x: 0, y: -300})
     }
 
+    //start animation when component mounts
     componentDidMount() {
+        const { navigation, deckToShow } = this.props
+        //change stack navigation header title to that of the relevant deck being shown
+        navigation.setOptions({ headerTitle: `${deckToShow.title} Deck`})
+
         Animated.spring(this.state.pos, {
             toValue: { x: 0, y: 0 },
-            delay: 500,
+            delay: 300,
             friction: 5,
             tension: 30,
             useNativeDriver: false
@@ -58,8 +63,7 @@ class DeckDetails extends Component {
             <StyledView>
                 <Animated.View
                     style={this.state.pos.getLayout()}>
-                    <StyledTitle>{deckToShow.title}</StyledTitle>
-                    <Text>{deckToShow.cards.length} Cards</Text>
+                    <StyledTitle>{deckToShow.cards.length} Cards</StyledTitle>
                     <StyledTouchable onPress={() => navigation.navigate('Quiz', { id: deckToShow.title})}>
                         <Text>Start Quiz</Text>
                     </StyledTouchable>
