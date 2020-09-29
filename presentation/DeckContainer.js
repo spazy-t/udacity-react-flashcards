@@ -8,7 +8,10 @@ const DeckContainer = ({ title, cardNum }) => {
  return(
      <View>
         <StyledTitle>{title}</StyledTitle>
-        <StyledText>{cardNum}</StyledText>
+        <StyledText>{cardNum === 1
+            ? `${cardNum} Card`
+            : `${cardNum} Cards`}
+        </StyledText>
     </View>
  )
 }

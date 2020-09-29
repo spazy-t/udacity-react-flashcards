@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Text, Alert } from 'react-native'
+import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
-import { StyledTouchable, StyledView, StyledTitle } from '../styled/common'
+import { StyledTouchable, StyledView, StyledTitle, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 
 class Quiz extends Component {
@@ -84,17 +84,17 @@ class Quiz extends Component {
         //if no cards in the deck show NoCards component
         if(quizCards.length === 0) {
             return(
-                <NoCards />
+                <NoCards nav={navigation} id={id} />
             )
         } else if(cardNum === quizCards.length) {
             return(
                 <StyledView>
                     <Score score={score} totalCards={quizCards.length} />
                     <StyledTouchable onPress={this.resetQuiz}>
-                        <Text>Restart Quiz</Text>
+                        <StyledText>Restart Quiz</StyledText>
                     </StyledTouchable>
                     <StyledTouchable onPress={() => navigation.navigate('DeckDetails', { id: id })}>
-                        <Text>Back to Deck</Text>
+                        <StyledText>Back to Deck</StyledText>
                     </StyledTouchable>
                 </StyledView>
             )
@@ -107,22 +107,22 @@ class Quiz extends Component {
                     ? quizCards[cardNum].question
                     : quizCards[cardNum].answer
                 }</StyledTitle>
-                <StyledTouchable onPress={this.handleCardFlip}>
-                    <Text>{showAnswer === false
+                <JustTextBtn onPress={this.handleCardFlip}>
+                    <StyledText>{showAnswer === false
                             ? 'Show Answer'
                             : 'Show Question'
                         }
-                    </Text>
-                </StyledTouchable>
-                <StyledTouchable onPress={() => this.handleCardComplete('correct')}>
-                    <Text>Correct</Text>
-                </StyledTouchable>
-                <StyledTouchable onPress={this.handleCardComplete}>
-                    <Text>Incorrect</Text>
-                </StyledTouchable>
-                <StyledTouchable onPress={this.handleDeleteCard}>
-                    <Text>Delete Card</Text>
-                </StyledTouchable>
+                    </StyledText>
+                </JustTextBtn>
+                <CorrectBtn onPress={() => this.handleCardComplete('correct')}>
+                    <StyledText>Correct</StyledText>
+                </CorrectBtn>
+                <InCorrectBtn onPress={this.handleCardComplete}>
+                    <StyledText>Incorrect</StyledText>
+                </InCorrectBtn>
+                <JustTextBtn onPress={this.handleDeleteCard}>
+                    <StyledText>Delete Card</StyledText>
+                </JustTextBtn>
             </StyledView>
         )
     }

@@ -10,7 +10,7 @@ const Tabs = createMaterialTopTabNavigator()
 const TabNav = () => (
     <Fragment>
         <View style={{ height: 40, backgroundColor: '#fff' }} />
-        <Tabs.Navigator>
+        <Tabs.Navigator sceneContainerStyle={{backgroundColor: '#ff5050'}} tabBarOptions={{labelStyle: {fontSize: 18, fontWeight: 'bold'}}} >
             <Tabs.Screen name="DeckList" component={DeckList} />
             <Tabs.Screen name="NewDeck" component={NewDeck} />
         </Tabs.Navigator>

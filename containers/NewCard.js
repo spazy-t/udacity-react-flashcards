@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddCardToDeck } from '../actions/decks'
-import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
+import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView, StyledTitle } from '../styled/common'
 
 class NewCard extends Component {
     state = {
@@ -45,7 +44,7 @@ class NewCard extends Component {
 
         return(
             <StyledView>
-                <Text>{id}</Text>
+                <StyledTitle>{id}</StyledTitle>
                 <StyledInput
                     placeholder='Question'
                     value={question}

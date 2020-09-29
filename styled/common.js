@@ -1,13 +1,30 @@
 import styled from 'styled-components/native'
 
 export const StyledTouchable = styled.TouchableOpacity`
-    height: 50px;
     border: 1px solid #000;
     border-radius: 5px;
     margin: 10px 0;
-    width: 200px;
     align-items: center;
     justify-content: center;
+    min-width: 200px;
+    padding: 5px 0;
+`
+
+export const CorrectBtn = styled(StyledTouchable)`
+    background-color: #0f0;
+    border-color: #0f0;
+`
+
+export const InCorrectBtn = styled(StyledTouchable)`
+    background-color: #f00;
+    border-color: #f00;
+`
+
+export const JustTextBtn = styled(StyledTouchable)`
+    height: auto;
+    width: auto;
+    padding: 5px;
+    min-width: 0;  
 `
 
 export const StyledSubmitBtn = styled(StyledTouchable)`
@@ -16,7 +33,7 @@ export const StyledSubmitBtn = styled(StyledTouchable)`
 
 export const StyledSubmitText = styled.Text`
     text-align: center;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
     padding: 5px;
     color: #fff;
@@ -33,6 +50,7 @@ export const StyledInput = styled.TextInput`
     border-radius: 25px;
     padding: 15px;
     margin: 15px;
+    font-size: 18px;
     width: 90%;
 `
 
@@ -43,5 +61,5 @@ export const StyledTitle = styled.Text`
 `
 
 export const StyledText = styled.Text`
-    align-self: center;
+    font-size: 18px;
 `

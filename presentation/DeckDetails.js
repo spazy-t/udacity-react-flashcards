@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Text, Alert, Animated } from 'react-native'
+import { Alert, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import { StyledTouchable, StyledTitle, StyledView } from '../styled/common'
+import { StyledTouchable, StyledTitle, StyledView, StyledText } from '../styled/common'
 import { handleDeleteDeck } from '../actions/decks'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
@@ -63,15 +63,18 @@ class DeckDetails extends Component {
             <StyledView>
                 <Animated.View
                     style={this.state.pos.getLayout()}>
-                    <StyledTitle>{deckToShow.cards.length} Cards</StyledTitle>
+                    <StyledTitle>{deckToShow.cards.length === 1
+                        ? `${deckToShow.cards.length} Card`
+                        : `${deckToShow.cards.length} Cards`}
+                    </StyledTitle>
                     <StyledTouchable onPress={() => navigation.navigate('Quiz', { id: deckToShow.title})}>
-                        <Text>Start Quiz</Text>
+                        <StyledText>Start Quiz</StyledText>
                     </StyledTouchable>
                     <StyledTouchable onPress={() => navigation.navigate('NewCard', { id: deckToShow.title })}>
-                        <Text>Add Card</Text>
+                        <StyledText>Add Card</StyledText>
                     </StyledTouchable>
                     <StyledTouchable onPress={this.handleDelete}>
-                        <Text>Delete Deck</Text>
+                        <StyledText>Delete Deck</StyledText>
                     </StyledTouchable>
                 </Animated.View>
             </StyledView>
