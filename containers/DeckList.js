@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DeckContainer from '../presentation/DeckContainer'
 import { connect } from 'react-redux'
 import { handleInitData } from '../actions/decks'
-import { StyledView, StyledTouchable } from '../styled/common'
+import { StyledScroll, DashDeck } from '../styled/common'
 import { setLocalNotification } from '../utils/helpers'
 
 //A list of all the available decks, each has a container showing the initial data
@@ -18,15 +18,15 @@ class DeckList extends Component {//calls thunk action creator to grab asyncstor
         const { currentDecks, navigation } = this.props
         //TODO: stop reordering when a new card is added, maybe a for loop instead of map?
         return(
-            <StyledView>
+            <StyledScroll contentContainerStyle={{ alignItems: 'center' }}>
                 {Object.keys(currentDecks).map((deck) => (
-                    <StyledTouchable key={deck} onPress={() => navigation.navigate('DeckDetails', { id: deck })}>
+                    <DashDeck key={deck} onPress={() => navigation.navigate('DeckDetails', { id: deck })}>
                         <DeckContainer
                                title={currentDecks[deck].title}
                                cardNum={currentDecks[deck].cards.length} />
-                    </StyledTouchable>
+                    </DashDeck>
                 ))}
-            </StyledView>
+            </StyledScroll>
         )
     }
 }

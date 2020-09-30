@@ -2,7 +2,6 @@ import styled from 'styled-components/native'
 
 export const StyledTouchable = styled.TouchableOpacity`
     border: 1px solid #000;
-    border-radius: 5px;
     margin: 10px 0;
     align-items: center;
     justify-content: center;
@@ -10,25 +9,50 @@ export const StyledTouchable = styled.TouchableOpacity`
     padding: 5px 0;
 `
 
+export const RegularBtn = styled(StyledTouchable)`
+    background-color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    elevation: 5;
+`
+
+export const DashDeck = styled(StyledTouchable)`
+    width: 80%;
+    height: 100px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #fff;
+    elevation: 5;
+`
+
 export const CorrectBtn = styled(StyledTouchable)`
-    background-color: #0f0;
+    background-color: #99ff99;
     border-color: #0f0;
+    border-radius: 15px;
+    elevation: 5;
 `
 
 export const InCorrectBtn = styled(StyledTouchable)`
-    background-color: #f00;
-    border-color: #f00;
+    background-color: #ff99ff;
+    border-color: #ff33ff;
+    border-radius: 15px;
+    elevation: 5;
 `
 
 export const JustTextBtn = styled(StyledTouchable)`
     height: auto;
     width: auto;
-    padding: 5px;
-    min-width: 0;  
+    padding: 10px;
+    min-width: 0;
+    border-radius: 15px;
+    background-color: #fff;
 `
 
 export const StyledSubmitBtn = styled(StyledTouchable)`
     background-color: #000;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 `
 
 export const StyledSubmitText = styled.Text`
@@ -45,6 +69,11 @@ export const StyledView = styled.View`
     margin-top: 15px;
 `
 
+export const StyledScroll = styled.ScrollView`
+    flex: 1;
+    margin-top: 15px;
+`
+
 export const StyledInput = styled.TextInput`
     border: 1px solid #000;
     border-radius: 25px;
@@ -52,6 +81,8 @@ export const StyledInput = styled.TextInput`
     margin: 15px;
     font-size: 18px;
     width: 90%;
+    background-color: #ccc;
+    color: #fff;
 `
 
 export const StyledTitle = styled.Text`

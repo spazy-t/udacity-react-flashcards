@@ -3,7 +3,7 @@ import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
-import { StyledTouchable, StyledView, StyledTitle, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText } from '../styled/common'
+import { RegularBtn, StyledView, StyledTitle, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 
 class Quiz extends Component {
@@ -90,12 +90,12 @@ class Quiz extends Component {
             return(
                 <StyledView>
                     <Score score={score} totalCards={quizCards.length} />
-                    <StyledTouchable onPress={this.resetQuiz}>
+                    <RegularBtn onPress={this.resetQuiz}>
                         <StyledText>Restart Quiz</StyledText>
-                    </StyledTouchable>
-                    <StyledTouchable onPress={() => navigation.navigate('DeckDetails', { id: id })}>
+                    </RegularBtn>
+                    <RegularBtn onPress={() => navigation.navigate('DeckDetails', { id: id })}>
                         <StyledText>Back to Deck</StyledText>
-                    </StyledTouchable>
+                    </RegularBtn>
                 </StyledView>
             )
         }

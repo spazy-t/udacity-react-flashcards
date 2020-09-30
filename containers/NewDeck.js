@@ -39,6 +39,7 @@ class NewDeck extends Component {
         return(
             <StyledView>
                 <StyledInput
+                    placeholderTextColor='#fff'
                     placeholder='Enter deck title'
                     value={this.state.title}
                     onChangeText={this.textChanged} />

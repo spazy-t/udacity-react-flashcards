@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import { StyledTitle } from '../styled/common'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 //TODO: clear Notification here
@@ -15,7 +16,7 @@ export default class Score extends Component {
 
         return(
             <View>
-                <Text>{`You're score ${score} / ${totalCards}`}</Text>
+                <StyledTitle>{`You're score ${score} / ${totalCards}`}</StyledTitle>
             </View>
         )
     }

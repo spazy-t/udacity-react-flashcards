@@ -46,10 +46,12 @@ class NewCard extends Component {
             <StyledView>
                 <StyledTitle>{id}</StyledTitle>
                 <StyledInput
+                    placeholderTextColor='#fff'
                     placeholder='Question'
                     value={question}
                     onChangeText={(text) => this.setState({ question: text })} />
                 <StyledInput
+                    placeholderTextColor='#fff'
                     placeholder='Answer'
                     value={answer}
                     onChangeText={(text) => this.setState({ answer: text })} />
