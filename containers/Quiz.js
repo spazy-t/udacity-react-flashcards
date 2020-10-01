@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Alert } from 'react-native'
+import { Alert, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
 import { RegularBtn, StyledView, StyledTitle, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
+import studyImage from '../images/studyImage.jpg'
 
 class Quiz extends Component {
     //local state to hold score to show at the end of quiz
@@ -84,46 +85,52 @@ class Quiz extends Component {
         //if no cards in the deck show NoCards component
         if(quizCards.length === 0) {
             return(
-                <NoCards nav={navigation} id={id} />
+                <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                    <NoCards nav={navigation} id={id} />
+                </ImageBackground>
             )
         } else if(cardNum === quizCards.length) {
             return(
-                <StyledView>
-                    <Score score={score} totalCards={quizCards.length} />
-                    <RegularBtn onPress={this.resetQuiz}>
-                        <StyledText>Restart Quiz</StyledText>
-                    </RegularBtn>
-                    <RegularBtn onPress={() => navigation.navigate('DeckDetails', { id: id })}>
-                        <StyledText>Back to Deck</StyledText>
-                    </RegularBtn>
-                </StyledView>
+                <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                    <StyledView>
+                        <Score score={score} totalCards={quizCards.length} />
+                        <RegularBtn onPress={this.resetQuiz}>
+                            <StyledText>Restart Quiz</StyledText>
+                        </RegularBtn>
+                        <RegularBtn onPress={() => navigation.navigate('DeckDetails', { id: id })}>
+                            <StyledText>Back to Deck</StyledText>
+                        </RegularBtn>
+                    </StyledView>
+                </ImageBackground>
             )
         }
         //show card question and all response buttons, if the user clicks to show answer show
         //the answer at top and change button text
         return(
-            <StyledView>
-                <StyledTitle>{showAnswer === false
-                    ? quizCards[cardNum].question
-                    : quizCards[cardNum].answer
-                }</StyledTitle>
-                <JustTextBtn onPress={this.handleCardFlip}>
-                    <StyledText>{showAnswer === false
-                            ? 'Show Answer'
-                            : 'Show Question'
-                        }
-                    </StyledText>
-                </JustTextBtn>
-                <CorrectBtn onPress={() => this.handleCardComplete('correct')}>
-                    <StyledText>Correct</StyledText>
-                </CorrectBtn>
-                <InCorrectBtn onPress={this.handleCardComplete}>
-                    <StyledText>Incorrect</StyledText>
-                </InCorrectBtn>
-                <JustTextBtn onPress={this.handleDeleteCard}>
-                    <StyledText>Delete Card</StyledText>
-                </JustTextBtn>
-            </StyledView>
+            <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                <StyledView>
+                    <StyledTitle>{showAnswer === false
+                        ? quizCards[cardNum].question
+                        : quizCards[cardNum].answer
+                    }</StyledTitle>
+                    <JustTextBtn onPress={this.handleCardFlip}>
+                        <StyledText>{showAnswer === false
+                                ? 'Show Answer'
+                                : 'Show Question'
+                            }
+                        </StyledText>
+                    </JustTextBtn>
+                    <CorrectBtn onPress={() => this.handleCardComplete('correct')}>
+                        <StyledText>Correct</StyledText>
+                    </CorrectBtn>
+                    <InCorrectBtn onPress={this.handleCardComplete}>
+                        <StyledText>Incorrect</StyledText>
+                    </InCorrectBtn>
+                    <JustTextBtn onPress={this.handleDeleteCard}>
+                        <StyledText>Delete Card</StyledText>
+                    </JustTextBtn>
+                </StyledView>
+            </ImageBackground>
         )
     }
 }

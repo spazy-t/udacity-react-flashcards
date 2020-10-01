@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddCardToDeck } from '../actions/decks'
 import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView, StyledTitle } from '../styled/common'
+import studyImage from '../images/studyImage.jpg'
 
 class NewCard extends Component {
     state = {
@@ -43,22 +45,24 @@ class NewCard extends Component {
         const disabledSubmit = question === '' || answer === ''
 
         return(
-            <StyledView>
-                <StyledTitle>{id}</StyledTitle>
-                <StyledInput
-                    placeholderTextColor='#fff'
-                    placeholder='Question'
-                    value={question}
-                    onChangeText={(text) => this.setState({ question: text })} />
-                <StyledInput
-                    placeholderTextColor='#fff'
-                    placeholder='Answer'
-                    value={answer}
-                    onChangeText={(text) => this.setState({ answer: text })} />
-                <StyledSubmitBtn onPress={this.handleSubmit} disabled={disabledSubmit} style={disabledSubmit ? {opacity: 0.2} : null}>
-                    <StyledSubmitText>SUBMIT</StyledSubmitText>
-                </StyledSubmitBtn>
-            </StyledView>
+            <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                <StyledView>
+                    <StyledTitle>{id}</StyledTitle>
+                    <StyledInput
+                        placeholderTextColor='#fff'
+                        placeholder='Question'
+                        value={question}
+                        onChangeText={(text) => this.setState({ question: text })} />
+                    <StyledInput
+                        placeholderTextColor='#fff'
+                        placeholder='Answer'
+                        value={answer}
+                        onChangeText={(text) => this.setState({ answer: text })} />
+                    <StyledSubmitBtn onPress={this.handleSubmit} disabled={disabledSubmit} style={disabledSubmit ? {opacity: 0.2} : null}>
+                        <StyledSubmitText>SUBMIT</StyledSubmitText>
+                    </StyledSubmitBtn>
+                </StyledView>
+            </ImageBackground>
         )
     }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text } from 'react-native'
-import { StyledView, StyledTitle, RegularBtn } from '../styled/common'
+import { StyledView, StyledTitle, RegularBtn, StyledText } from '../styled/common'
 
 export default function NoCards(props) {
     const { nav, id } = props
@@ -9,10 +8,10 @@ export default function NoCards(props) {
         <StyledView>
             <StyledTitle>No cards!</StyledTitle>
             <RegularBtn onPress={() => nav.navigate('NewCard', { id: id })}>
-                <Text>Add Card</Text>
+                <StyledText>Add Card</StyledText>
             </RegularBtn>
             <RegularBtn onPress={() => nav.navigate('Home')}>
-                <Text>To Deck List</Text>
+                <StyledText>To Deck List</StyledText>
             </RegularBtn>
         </StyledView>
     )

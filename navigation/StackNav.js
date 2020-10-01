@@ -12,7 +12,7 @@ const Stack = createStackNavigator()
 //the main nav for the app which nests a tab nav for the default screen
 const StackNav = () => (
     <Fragment>
-        <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center' }}>
+        <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
             <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: 'rgba(0, 0, 0, 0)' }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold' },
                 headerStyle: { backgroundColor: '#b3ffb3' }}}>
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={TabNav} />

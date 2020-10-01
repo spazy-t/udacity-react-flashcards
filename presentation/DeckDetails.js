@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Alert, Animated } from 'react-native'
+import { Alert, Animated, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
 import { RegularBtn, StyledTitle, StyledView, StyledText } from '../styled/common'
 import { handleDeleteDeck } from '../actions/decks'
+import studyImage from '../images/studyImage.jpg'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
 class DeckDetails extends Component {
@@ -60,24 +61,26 @@ class DeckDetails extends Component {
         const { navigation, deckToShow } = this.props
         //show deck information in ui, on buttons pass in params so corresponding component knows which deck to deal with in store state
         return(
-            <StyledView>
-                <Animated.View
-                    style={this.state.pos.getLayout()}>
-                    <StyledTitle>{deckToShow.cards.length === 1
-                        ? `${deckToShow.cards.length} Card`
-                        : `${deckToShow.cards.length} Cards`}
-                    </StyledTitle>
-                    <RegularBtn onPress={() => navigation.navigate('Quiz', { id: deckToShow.title})}>
-                        <StyledText>Start Quiz</StyledText>
-                    </RegularBtn>
-                    <RegularBtn onPress={() => navigation.navigate('NewCard', { id: deckToShow.title })}>
-                        <StyledText>Add Card</StyledText>
-                    </RegularBtn>
-                    <RegularBtn onPress={this.handleDelete}>
-                        <StyledText>Delete Deck</StyledText>
-                    </RegularBtn>
-                </Animated.View>
-            </StyledView>
+            <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                <StyledView>
+                    <Animated.View
+                        style={this.state.pos.getLayout()}>
+                        <StyledTitle>{deckToShow.cards.length === 1
+                            ? `${deckToShow.cards.length} Card`
+                            : `${deckToShow.cards.length} Cards`}
+                        </StyledTitle>
+                        <RegularBtn onPress={() => navigation.navigate('Quiz', { id: deckToShow.title})}>
+                            <StyledText>Start Quiz</StyledText>
+                        </RegularBtn>
+                        <RegularBtn onPress={() => navigation.navigate('NewCard', { id: deckToShow.title })}>
+                            <StyledText>Add Card</StyledText>
+                        </RegularBtn>
+                        <RegularBtn onPress={this.handleDelete}>
+                            <StyledText>Delete Deck</StyledText>
+                        </RegularBtn>
+                    </Animated.View>
+                </StyledView>
+            </ImageBackground>
         )
     }
 }
