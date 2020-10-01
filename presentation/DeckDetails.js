@@ -85,11 +85,11 @@ class DeckDetails extends Component {
     }
 }
 
-function mapStateToProps(state, { route }) {
+function mapStateToProps({decks}, { route }) {
     const { id } = route.params
 
     return {
-        deckToShow: state[id]
+        deckToShow: decks[id]
     }
 }
 

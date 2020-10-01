@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import { connect } from 'react-redux'
 import { StyledTitle } from '../styled/common'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { saveResult } from '../actions/results'
 
-//TODO: clear Notification here
-
-export default class Score extends Component {
+class Score extends Component {
     componentDidMount() {
         clearLocalNotification()
         .then(setLocalNotification())
+
+        //TODO: set results data here either in component or callback
+        this.props.dispatch(saveResult({
+            deckId: 'Heidi',
+            score: 10,
+            date: '12/10/2020'
+        }))
     }
 
     render() {
@@ -20,5 +27,6 @@ export default class Score extends Component {
             </View>
         )
     }
-    
 }
+
+export default connect()(Score)

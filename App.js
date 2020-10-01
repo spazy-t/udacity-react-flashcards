@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import StackNav from './navigation/StackNav'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import decks from './reducers/decks'
+import reducer from './reducers'
 import middleware from './middleware'
 
 //TODO: add prop types
@@ -15,7 +15,7 @@ import middleware from './middleware'
  */
 export default function App() {
   return (
-    <Provider store={createStore(decks, middleware)}>
+    <Provider store={createStore(reducer, middleware)}>
       <View style={{ flex: 1 }}>
         <NavigationContainer>
           <StackNav />

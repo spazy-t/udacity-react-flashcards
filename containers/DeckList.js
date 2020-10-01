@@ -16,24 +16,25 @@ class DeckList extends Component {//calls thunk action creator to grab asyncstor
 
     render() {
         const { currentDecks, navigation } = this.props
+        
         //TODO: stop reordering when a new card is added, maybe a for loop instead of map?
         return(
             <StyledScroll contentContainerStyle={{ alignItems: 'center' }}>
-                {Object.keys(currentDecks).map((deck) => (
+                {currentDecks !== null &&(Object.keys(currentDecks).map((deck) => (
                     <DashDeck key={deck} onPress={() => navigation.navigate('DeckDetails', { id: deck })}>
                         <DeckContainer
                                title={currentDecks[deck].title}
                                cardNum={currentDecks[deck].cards.length} />
                     </DashDeck>
-                ))}
+                )))}
             </StyledScroll>
         )
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ decks }) {
     return {
-        currentDecks: state
+        currentDecks: { ...decks }
     }
 }
 

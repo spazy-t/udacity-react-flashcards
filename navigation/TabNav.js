@@ -3,6 +3,7 @@ import { View, StatusBar } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import DeckList from '../containers/DeckList'
 import NewDeck from '../containers/NewDeck'
+import ResultsBoard from '../presentation/ResultsBoard'
 
 const Tabs = createMaterialTopTabNavigator()
 
@@ -18,8 +19,9 @@ const TabNav = () => (
                     style: { backgroundColor: '#b3ffb3' },
                     activeTintColor: '#000',
                     indicatorStyle: { backgroundColor: '#ff99ff'} }} >
-                <Tabs.Screen name="DeckList" component={DeckList} />
-                <Tabs.Screen name="NewDeck" component={NewDeck} />
+                <Tabs.Screen name='DeckList' component={DeckList} />
+                <Tabs.Screen name='NewDeck' component={NewDeck} />
+                <Tabs.Screen name='Results' component={ResultsBoard} />
             </Tabs.Navigator>
     </Fragment>
 )

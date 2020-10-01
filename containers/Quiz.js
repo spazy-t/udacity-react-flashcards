@@ -136,11 +136,11 @@ class Quiz extends Component {
 }
 
 //map state to grab the relevant deck cards (questions + answers)
-function mapStateToProps(state, { route }) {
+function mapStateToProps({decks}, { route }) {
     const { id } = route.params
 
     return {
-        quizCards: state[id].cards, 
+        quizCards: decks[id].cards,
         id: id
     }
 }
