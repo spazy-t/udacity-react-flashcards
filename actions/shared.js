@@ -11,7 +11,7 @@ const dummyData = {
                 answer: 'No!'
             },
             {
-                question: 'whic is better: Android or iOS?',
+                question: 'which is better: Android or iOS?',
                 answer: 'Android'
             },
             {
@@ -48,3 +48,5 @@ export const handleInitData = () => {
         })
     }
 }
+
+//TODO: write action to delete deck and remove same from results data

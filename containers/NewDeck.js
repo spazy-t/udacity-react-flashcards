@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddDeck } from '../actions/decks'
 import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
@@ -8,14 +9,15 @@ class NewDeck extends Component {
         title: ''
     }
 
-    //TODO: check that title isn't already in use
     //called when new deck is submitted, adds to store state and navigates to new deck
     onSubmit = () => {
         const { title } = this.state
-        const { navigation, handleAddDeck } = this.props
+        const { navigation, handleAddDeck, currentDecks } = this.props
 
-        //if a new title has been entered then call thunk action to save new deck in asyncstorage and store state.
-        if(title !== '') {
+        //if a new title has been entered and it doesn't already exist, 
+        //call thunk action to save new deck in asyncstorage and store state,
+        //or show alert to say pick another title
+        if(title !== '' && !currentDecks.includes(title)) {
             handleAddDeck(title)
 
             this.setState(() => ({
@@ -23,6 +25,17 @@ class NewDeck extends Component {
             }))
 
             navigation.navigate('DeckDetails', { id: title })
+        } else {
+            Alert.alert('Deck title already exists',
+                'Please choose another title',
+                [{
+                    text: 'OK',
+                    onPress: () => {
+                        this.setState(() => ({
+                            title: ''
+                        }))
+                    }
+                }])
         }
     }
 
@@ -52,4 +65,12 @@ class NewDeck extends Component {
     }
 }
 
-export default connect(null, { handleAddDeck })(NewDeck)
+function mapStateToProps({ decks }) {
+    const currentDecks = Object.keys(decks)
+
+    return {
+        currentDecks
+    }
+}
+
+export default connect(mapStateToProps, { handleAddDeck })(NewDeck)
