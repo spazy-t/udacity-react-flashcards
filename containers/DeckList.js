@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DeckContainer from '../presentation/DeckContainer'
 import { connect } from 'react-redux'
-import { handleInitData } from '../actions/decks'
+import { handleInitData } from '../actions/shared'
 import { StyledScroll, DashDeck } from '../styled/common'
 import { setLocalNotification } from '../utils/helpers'
 

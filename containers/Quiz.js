@@ -93,7 +93,7 @@ class Quiz extends Component {
             return(
                 <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
                     <StyledView>
-                        <Score score={score} totalCards={quizCards.length} />
+                        <Score score={score} totalCards={quizCards.length} deckId={id} />
                         <RegularBtn onPress={this.resetQuiz}>
                             <StyledText>Restart Quiz</StyledText>
                         </RegularBtn>

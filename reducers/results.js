@@ -5,16 +5,20 @@ const results = (state = {}, action) => {
         case RECEIVE_RESULTS:
             return {
                 ...state,
-                ...action.resultsData
+                ...action.results
             }
         case SAVE_RESULT:
-            const { deckId, score, date } = action.resultData
+            const { deckId, score, date, cardNum, timesPlayed } = action.resultData
 
             return {
+                ...state,
                 [deckId]: {
                     ...state[deckId],
-                    bestScore: score,
-                    date: date
+                    deckId,
+                    score,
+                    cardNum,
+                    date,
+                    timesPlayed
                 }
             }
         default:

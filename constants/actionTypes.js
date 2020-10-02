@@ -11,6 +11,9 @@ export const DELETE_CARD = 'DELETE_CARD'
  */
 export const RECEIVE_RESULTS = 'RECEIVE_RESULTS'
 export const SAVE_RESULT = 'SAVE_RESULT'
-//AsyncStorage keys
+/**
+ * AsyncStorage keys
+ */
 export const DECKS_STORAGE_KEY = 'FlashCards:decks'
 export const NOTIFICATION_KEY = 'FlashCards:notifications'
+export const RESULTS_STORAGE_KEY = 'FlashCards:results'

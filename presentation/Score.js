@@ -3,18 +3,27 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { StyledTitle } from '../styled/common'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
-import { saveResult } from '../actions/results'
+import { handleSaveResult } from '../actions/results'
 
 class Score extends Component {
     componentDidMount() {
+        const { dispatch, deckId, score, totalCards, currentBest, lastDate, timesPlayed } = this.props
+        //user has completed quiz therefore clear notification to study for the day
         clearLocalNotification()
         .then(setLocalNotification())
 
-        //TODO: set results data here either in component or callback
-        this.props.dispatch(saveResult({
-            deckId: 'Heidi',
-            score: 10,
-            date: '12/10/2020'
+        //checks current deck results best score and if it's better or score hasn't been set yet,
+        //add current score and todays date to store state
+        const newTopScore = () => {
+            return score >= currentBest || currentBest === null
+        }
+        //dispatches thunk action to save new top score or just times played + 1 if not top score
+        dispatch(handleSaveResult({
+            deckId,
+            score: newTopScore() === true ? score : currentBest,
+            cardNum: totalCards,
+            date: newTopScore() === true ? new Date().toLocaleDateString() : lastDate,
+            timesPlayed: timesPlayed + 1
         }))
     }
 
@@ -29,4 +38,12 @@ class Score extends Component {
     }
 }
 
-export default connect()(Score)
+function mapStateToProps({results}, {deckId}) {
+    return {
+        currentBest: results[deckId] !== undefined ? results[deckId].score : null,
+        timesPlayed: results[deckId] !== undefined ? results[deckId].timesPlayed : 0,
+        lastDate: results[deckId] !== undefined ? results[deckId].date : null,
+    }
+}
+
+export default connect(mapStateToProps)(Score)

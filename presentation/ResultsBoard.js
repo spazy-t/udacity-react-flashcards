@@ -1,14 +1,21 @@
 import React from 'react'
-import { Text } from 'react-native'
-import { StyledView } from '../styled/common'
+import { StyledScroll, StyledTitle, StyledText, DashDeck } from '../styled/common'
 import { connect } from 'react-redux'
 
 const ResultsBoard = (props) => {
-    console.log('results board', props.results)
+    const { results } = props
+
     return(
-        <StyledView>
-            <Text>Quiz Score</Text>
-        </StyledView>
+        <StyledScroll contentContainerStyle={{ alignItems: 'center' }}>
+            {Object.keys(results).map((result) => (
+                <DashDeck key={result}>
+                    <StyledTitle>{`${results[result].deckId} Deck`}</StyledTitle>
+                    <StyledText>{`Top score: ${results[result].score} out of ${results[result].cardNum}`}</StyledText>
+                    <StyledText>{results[result].date}</StyledText>
+                    <StyledText>{`Quiz studied ${results[result].timesPlayed} times`}</StyledText>
+                </DashDeck>
+            ))}
+        </StyledScroll>
     )
 }
 

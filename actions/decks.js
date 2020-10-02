@@ -1,53 +1,9 @@
 import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK, DELETE_CARD } from '../constants/actionTypes'
-import { getDecks, saveNewDeck, saveCardToDeck, removeDeck, removeCardFromDeck } from '../utils/api'
+import { saveNewDeck, saveCardToDeck, removeDeck, removeCardFromDeck } from '../utils/api'
 
-//TODO: remove dummy data when AsyncStorage is set up
-const dummyData = {
-    java: {
-        title: 'java',
-        cards: [
-            {
-                question: 'Will trump get a second term?',
-                answer: 'No!'
-            },
-            {
-                question: 'whic is better: Android or iOS?',
-                answer: 'Android'
-            },
-            {
-                question: 'front end or back end developer?',
-                answer: 'front'
-            },
-        ]
-    },
-    javaScript: {
-        title: 'javaScript',
-        cards: []
-    },
-    python: {
-        title: 'python',
-        cards: []
-    },
-}
 /**
  * Thunk action creators
  */
-//TODO: once complete remove dummy data and just pass null so user needs to create first deck
-export const handleInitData = () => {
-    return (dispatch) => {
-        getDecks()
-        .then((results) => {
-            if(results !== null){
-                dispatch(receiveData(results))
-            } else {
-                dispatch(receiveData(dummyData))
-            }
-        })
-        .catch(err => {
-            console.log('error getting init data', err)
-        })
-    }
-}
 //Call AsyncStorage api method to add a deck and then calls redux store to do same if successful
 export const handleAddDeck = (deckTitle) => {
     return (dispatch) => {
@@ -109,7 +65,7 @@ export const handleDeleteCard = (cardInfo) => {
 /**
  * regular action creators
  */
-export const receiveData = (decksData) => {
+export const receiveDecksData = (decksData) => {
     return {
         type: RECEIVE_DECKS,
         decksData

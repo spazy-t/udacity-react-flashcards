@@ -8,6 +8,7 @@ class NewDeck extends Component {
         title: ''
     }
 
+    //TODO: check that title isn't already in use
     //called when new deck is submitted, adds to store state and navigates to new deck
     onSubmit = () => {
         const { title } = this.state
