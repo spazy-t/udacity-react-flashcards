@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import middleware from './middleware'
 
-//TODO: add prop types
 /**
  * pulls in the stacknav to show the default screens
  * uses redux provider to make connecting to store availbel within the app

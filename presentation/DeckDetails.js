@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { RegularBtn, StyledTitle, StyledView, StyledText } from '../styled/common'
 import { handleDeleteDeck } from '../actions/shared'
 import studyImage from '../images/studyImage.jpg'
+import PropTypes from 'prop-types'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
 class DeckDetails extends Component {
@@ -85,12 +86,18 @@ class DeckDetails extends Component {
     }
 }
 
-function mapStateToProps({decks}, { route }) {
+function mapStateToProps({ decks }, { route }) {
     const { id } = route.params
 
     return {
         deckToShow: decks[id]
     }
+}
+
+DeckDetails.propTypes = {
+    navigation: PropTypes.object.isRequired,
+    deckToShow: PropTypes.object.isRequired,
+    handleDeleteDeck: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, { handleDeleteDeck })(DeckDetails)

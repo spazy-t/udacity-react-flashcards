@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyledScroll, StyledTitle, StyledText, DashDeck } from '../styled/common'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const ResultsBoard = (props) => {
     const { results } = props
@@ -23,6 +24,10 @@ function mapStateToProps({ results }) {
     return {
         results
     }
+}
+
+ResultsBoard.propTypes = {
+    results: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps)(ResultsBoard)

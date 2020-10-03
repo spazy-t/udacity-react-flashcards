@@ -3,6 +3,7 @@ import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddDeck } from '../actions/decks'
 import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
+import PropTypes from 'prop-types'
 
 class NewDeck extends Component {
     state = {
@@ -71,6 +72,12 @@ function mapStateToProps({ decks }) {
     return {
         currentDecks
     }
+}
+
+NewDeck.propTypes = {
+    navigation: PropTypes.object.isRequired,
+    handleAddDeck: PropTypes.func.isRequired,
+    currentDecks: PropTypes.array.isRequired
 }
 
 export default connect(mapStateToProps, { handleAddDeck })(NewDeck)

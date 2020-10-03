@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { handleAddCardToDeck } from '../actions/decks'
 import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView, StyledTitle } from '../styled/common'
 import studyImage from '../images/studyImage.jpg'
+import PropTypes from 'prop-types'
 
 class NewCard extends Component {
     state = {
@@ -65,6 +66,11 @@ class NewCard extends Component {
             </ImageBackground>
         )
     }
+}
+
+NewCard.propTypes = {
+    handleAddCardToDeck: PropTypes.func.isRequired,
+    navigation: PropTypes.object.isRequired
 }
 
 export default connect(null, { handleAddCardToDeck })(NewCard)

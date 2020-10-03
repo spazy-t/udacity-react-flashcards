@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 import { handleInitData } from '../actions/shared'
 import { StyledScroll, DashDeck } from '../styled/common'
 import { setLocalNotification } from '../utils/helpers'
+import PropTypes from 'prop-types'
 
 //A list of all the available decks, each has a container showing the initial data
 //navigation is sent through as the container doesn't inherit that component
-class DeckList extends Component {//calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
+class DeckList extends Component {
+    //calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
     componentDidMount() {
-        //TODO: set local notification and check if one in storage currently
         setLocalNotification()
         this.props.handleInitData()
     }
@@ -36,6 +37,11 @@ function mapStateToProps({ decks }) {
     return {
         currentDecks: { ...decks }
     }
+}
+
+DeckList.propTypes = {
+    currentDecks: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
 }
 
 //connect to redux store in order to grab initial data and create decklist

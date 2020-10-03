@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { StyledTitle } from '../styled/common'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { handleSaveResult } from '../actions/results'
+import PropTypes from 'prop-types'
 
 class Score extends Component {
     componentDidMount() {
@@ -38,12 +39,21 @@ class Score extends Component {
     }
 }
 
-function mapStateToProps({results}, {deckId}) {
+function mapStateToProps({ results }, { deckId }) {
     return {
         currentBest: results[deckId] !== undefined ? results[deckId].score : null,
         timesPlayed: results[deckId] !== undefined ? results[deckId].timesPlayed : 0,
         lastDate: results[deckId] !== undefined ? results[deckId].date : null,
     }
+}
+
+Score.propTypes = {
+    deckId: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+    totalCards: PropTypes.number.isRequired,
+    currentBest: PropTypes.number.isRequired,
+    lastDate: PropTypes.string.isRequired,
+    timesPlayed: PropTypes.number.isRequired
 }
 
 export default connect(mapStateToProps)(Score)

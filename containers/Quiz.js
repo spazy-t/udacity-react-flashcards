@@ -6,6 +6,7 @@ import NoCards from '../presentation/NoCards'
 import { RegularBtn, StyledView, StyledTitle, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 import studyImage from '../images/studyImage.jpg'
+import PropTypes from 'prop-types'
 
 class Quiz extends Component {
     //local state to hold score to show at the end of quiz
@@ -136,13 +137,20 @@ class Quiz extends Component {
 }
 
 //map state to grab the relevant deck cards (questions + answers)
-function mapStateToProps({decks}, { route }) {
+function mapStateToProps({ decks }, { route }) {
     const { id } = route.params
 
     return {
         quizCards: decks[id].cards,
         id: id
     }
+}
+
+Quiz.propTypes = {
+    quizCards: PropTypes.array.isRequired,
+    handleDeleteCard: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    navigation: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, { handleDeleteCard })(Quiz)
