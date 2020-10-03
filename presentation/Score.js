@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 
 class Score extends Component {
     componentDidMount() {
-        const { dispatch, deckId, score, totalCards, currentBest, lastDate, timesPlayed } = this.props
+        const { handleSaveResult, deckId, score, totalCards, currentBest, lastDate, timesPlayed } = this.props
         //user has completed quiz therefore clear notification to study for the day
         clearLocalNotification()
         .then(setLocalNotification())
@@ -19,13 +19,13 @@ class Score extends Component {
             return score >= currentBest || currentBest === null
         }
         //dispatches thunk action to save new top score or just times played + 1 if not top score
-        dispatch(handleSaveResult({
+        handleSaveResult({
             deckId,
             score: newTopScore() === true ? score : currentBest,
             cardNum: totalCards,
             date: newTopScore() === true ? new Date().toLocaleDateString() : lastDate,
             timesPlayed: timesPlayed + 1
-        }))
+        })
     }
 
     render() {
@@ -53,7 +53,8 @@ Score.propTypes = {
     totalCards: PropTypes.number.isRequired,
     currentBest: PropTypes.number.isRequired,
     lastDate: PropTypes.string.isRequired,
-    timesPlayed: PropTypes.number.isRequired
+    timesPlayed: PropTypes.number.isRequired,
+    handleSaveResult: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps)(Score)
+export default connect(mapStateToProps, { handleSaveResult })(Score)
