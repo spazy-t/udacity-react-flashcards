@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledScroll, StyledTitle, StyledText, DashDeck } from '../styled/common'
+import { StyledScroll, StyledTitle, StyledText, ResultContainer } from '../styled/common'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -9,12 +9,12 @@ const ResultsBoard = (props) => {
     return(
         <StyledScroll contentContainerStyle={{ alignItems: 'center' }}>
             {Object.keys(results).map((result) => (
-                <DashDeck key={result}>
+                <ResultContainer key={result}>
                     <StyledTitle>{`${results[result].deckId} Deck`}</StyledTitle>
                     <StyledText>{`Top score: ${results[result].score} out of ${results[result].cardNum}`}</StyledText>
                     <StyledText>{results[result].date}</StyledText>
                     <StyledText>{`Quiz studied ${results[result].timesPlayed} times`}</StyledText>
-                </DashDeck>
+                </ResultContainer>
             ))}
         </StyledScroll>
     )

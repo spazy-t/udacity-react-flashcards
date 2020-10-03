@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Alert, Animated, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
-import { RegularBtn, StyledTitle, StyledView, StyledText } from '../styled/common'
+import { RegularBtn, StyledView, StyledText, HeaderText } from '../styled/common'
 import { handleDeleteDeck } from '../actions/shared'
 import studyImage from '../images/studyImage.jpg'
 import PropTypes from 'prop-types'
@@ -64,12 +64,12 @@ class DeckDetails extends Component {
         return(
             <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
                 <StyledView>
+                    <HeaderText>{deckToShow.cards.length === 1
+                        ? `${deckToShow.cards.length} Card`
+                        : `${deckToShow.cards.length} Cards`}
+                    </HeaderText>
                     <Animated.View
                         style={this.state.pos.getLayout()}>
-                        <StyledTitle>{deckToShow.cards.length === 1
-                            ? `${deckToShow.cards.length} Card`
-                            : `${deckToShow.cards.length} Cards`}
-                        </StyledTitle>
                         <RegularBtn onPress={() => navigation.navigate('Quiz', { id: deckToShow.title})}>
                             <StyledText>Start Quiz</StyledText>
                         </RegularBtn>

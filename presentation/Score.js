@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { StyledTitle } from '../styled/common'
+import { StyledView, HeaderText } from '../styled/common'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { handleSaveResult } from '../actions/results'
 import PropTypes from 'prop-types'
@@ -32,9 +32,7 @@ class Score extends Component {
         const { totalCards, score } = this.props
 
         return(
-            <View>
-                <StyledTitle>{`You're score ${score} / ${totalCards}`}</StyledTitle>
-            </View>
+            <HeaderText>{`You're score ${score} / ${totalCards}`}</HeaderText>
         )
     }
 }

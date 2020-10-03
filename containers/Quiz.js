@@ -3,7 +3,7 @@ import { Alert, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
-import { RegularBtn, StyledView, StyledTitle, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText } from '../styled/common'
+import { RegularBtn, StyledView, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText, HeaderText } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 import studyImage from '../images/studyImage.jpg'
 import PropTypes from 'prop-types'
@@ -14,6 +14,12 @@ class Quiz extends Component {
         score: 0,
         cardNum: 0,
         showAnswer: false
+    }
+
+    componentDidMount() {
+        const { navigation, id } = this.props
+
+        navigation.setOptions({ headerTitle: `Quiz: ${id}`})
     }
 
     //helper to move to next card q+a
@@ -110,10 +116,10 @@ class Quiz extends Component {
         return(
             <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
                 <StyledView>
-                    <StyledTitle>{showAnswer === false
+                    <HeaderText>{showAnswer === false
                         ? quizCards[cardNum].question
                         : quizCards[cardNum].answer
-                    }</StyledTitle>
+                    }</HeaderText>
                     <JustTextBtn onPress={this.handleCardFlip}>
                         <StyledText>{showAnswer === false
                                 ? 'Show Answer'

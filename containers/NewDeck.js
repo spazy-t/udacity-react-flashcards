@@ -58,7 +58,10 @@ class NewDeck extends Component {
                     placeholder='Enter deck title'
                     value={this.state.title}
                     onChangeText={this.textChanged} />
-                <StyledSubmitBtn onPress={this.onSubmit} disabled={disabledSubmit} style={disabledSubmit ? {opacity: 0.2} : null}>
+                <StyledSubmitBtn
+                    onPress={this.onSubmit}
+                    disabled={disabledSubmit}
+                    style={disabledSubmit ? {backgroundColor: '#ccc', opacity: 0.6} : null}>
                     <StyledSubmitText>Create Deck</StyledSubmitText>
                 </StyledSubmitBtn>
             </StyledView>
