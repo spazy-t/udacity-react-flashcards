@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Alert, ImageBackground } from 'react-native'
+import { Alert, ImageBackground, Animated, View } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
-import { RegularBtn, StyledView, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText, HeaderText } from '../styled/common'
+import { RegularBtn, StyledView, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText, HeaderView } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 import studyImage from '../images/studyImage.jpg'
 import PropTypes from 'prop-types'
@@ -13,13 +13,21 @@ class Quiz extends Component {
     state = {
         score: 0,
         cardNum: 0,
-        showAnswer: false
+        showAnswer: false,
+        pos: new Animated.ValueXY({ x: -500, y: 0 })
     }
-
+    //when mounted chnage the stack screen header
     componentDidMount() {
         const { navigation, id } = this.props
 
         navigation.setOptions({ headerTitle: `Quiz: ${id}`})
+
+        Animated.spring(this.state.pos, {
+            toValue: { x: 0, y: 0},
+            friction: 5,
+            tension: 30,
+            useNativeDriver: false
+        }).start()
     }
 
     //helper to move to next card q+a
@@ -29,11 +37,25 @@ class Quiz extends Component {
         }))
     }
 
+    //TODO: place animations into one configurable function to call instead of duplicating
     //flip answer and question onPress, show answer/question and change btn text
     handleCardFlip = () => {
-        this.setState((prevState) => ({
-            showAnswer: !prevState.showAnswer
-        }))
+        Animated.spring(this.state.pos, {
+            toValue: { x: 450, y: 0 },
+            friction: 10,
+            tension: 80,
+            useNativeDriver: false
+        }).start(() => {
+            this.setState((prevState) => ({
+                showAnswer: !prevState.showAnswer
+            }))
+            Animated.spring(this.state.pos, {
+                toValue: { x: 0, y: 0 },
+                friction: 10,
+                tension: 80,
+                useNativeDriver: false
+            }).start()
+        })
     }
 
     //callback fnct to move on to next card via state carNum(?), when incorrect / correct is pressed
@@ -116,10 +138,14 @@ class Quiz extends Component {
         return(
             <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
                 <StyledView>
-                    <HeaderText>{showAnswer === false
-                        ? quizCards[cardNum].question
-                        : quizCards[cardNum].answer
-                    }</HeaderText>
+                    <HeaderView>
+                        <Animated.Text style={[{ color: '#fff', fontSize: 25, fontWeight: 'bold', textAlign: 'center'}, this.state.pos.getLayout()]}>
+                            {showAnswer === false
+                                ? quizCards[cardNum].question
+                                : quizCards[cardNum].answer
+                            }
+                        </Animated.Text>
+                    </HeaderView>
                     <JustTextBtn onPress={this.handleCardFlip}>
                         <StyledText>{showAnswer === false
                                 ? 'Show Answer'

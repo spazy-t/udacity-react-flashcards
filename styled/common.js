@@ -106,6 +106,13 @@ export const HeaderText = styled(StyledTitle)`
     margin-bottom: 10px;
 `
 
+export const HeaderView = styled.View`
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 10px;
+`
+
 export const DashTitle = styled(StyledTitle)`
     font-size: 30px;
 `

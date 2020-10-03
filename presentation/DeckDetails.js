@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
 class DeckDetails extends Component {
     state = {
-        pos: new Animated.ValueXY({x: 0, y: -300})
+        pos: new Animated.ValueXY({ x: 0, y: -300 })
     }
 
     //start animation when component mounts
