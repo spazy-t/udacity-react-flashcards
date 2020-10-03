@@ -1,4 +1,4 @@
-import { SAVE_RESULT, RECEIVE_RESULTS } from '../constants/actionTypes'
+import { SAVE_RESULT, RECEIVE_RESULTS, DELETE_DECK } from '../constants/actionTypes'
 
 const results = (state = {}, action) => {
     switch(action.type) {
@@ -21,6 +21,11 @@ const results = (state = {}, action) => {
                     timesPlayed
                 }
             }
+        case DELETE_DECK:
+            let currentResults = { ...state }
+            delete currentResults[action.deckId]
+
+            return currentResults
         default:
             return state
     }

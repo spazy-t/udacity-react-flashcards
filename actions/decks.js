@@ -1,5 +1,5 @@
-import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK, DELETE_CARD } from '../constants/actionTypes'
-import { saveNewDeck, saveCardToDeck, removeDeck, removeCardFromDeck } from '../utils/api'
+import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_CARD } from '../constants/actionTypes'
+import { saveNewDeck, saveCardToDeck, removeCardFromDeck } from '../utils/api'
 
 /**
  * Thunk action creators
@@ -28,20 +28,6 @@ export const handleAddCardToDeck = ({ deckId, card }) => {
         .catch(err => {
             dispatch(deleteCard({ deckId, card }))
             console.log('error adding new card to deck in DB', err)
-        })
-    }
-}
-
-//Call AsyncStorage api method to delete a deck and then calls redux store to do same if successful
-export const handleDeleteDeck = (deckId) => {
-    return (dispatch) => {
-        removeDeck(deckId)
-        .then(
-            dispatch(deleteDeck(deckId))
-        )
-        .catch(err => {
-            dispatch(addDeck(deckId))
-            console.log('error removing deck from DB', err)
         })
     }
 }
@@ -83,13 +69,6 @@ export const addCard = (cardInfo) => {
     return {
         type: ADD_CARD,
         cardInfo
-    }
-}
-
-export const deleteDeck = (deckId) => {
-    return {
-        type: DELETE_DECK,
-        deckId
     }
 }
 

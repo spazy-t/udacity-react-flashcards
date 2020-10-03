@@ -1,6 +1,7 @@
-import { getResults, getDecks, saveDummyData } from '../utils/api'
-import { receiveDecksData } from './decks'
+import { getResults, getDecks, saveDummyData, removeDeck, removeDeckFromResults } from '../utils/api'
+import { receiveDecksData, addDeck } from './decks'
 import { receiveResultsData } from './results'
+import { DELETE_DECK } from '../constants/actionTypes'
 
 const dummyData = {
     java: {
@@ -30,6 +31,9 @@ const dummyData = {
     },
 }
 
+/**
+ * Thunk actions
+ */
 export const handleInitData = () => {
     return (dispatch) => {
         Promise.all([getDecks(), getResults()])
@@ -50,3 +54,26 @@ export const handleInitData = () => {
 }
 
 //TODO: write action to delete deck and remove same from results data
+//Call AsyncStorage api method to delete a deck and then calls redux store to do same if successful
+export const handleDeleteDeck = (deckId) => {
+    return (dispatch) => {
+        Promise.all([removeDeck(deckId), removeDeckFromResults(deckId)])
+        .then(
+            dispatch(deleteDeck(deckId))
+        )
+        .catch(err => {
+            dispatch(addDeck(deckId))
+            console.log('error removing deck from storage', err)
+        })
+    }
+}
+
+/**
+ * regular actions
+ */
+export const deleteDeck = (deckId) => {
+    return {
+        type: DELETE_DECK,
+        deckId
+    }
+}

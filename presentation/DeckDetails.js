@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Alert, Animated, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
 import { RegularBtn, StyledTitle, StyledView, StyledText } from '../styled/common'
-import { handleDeleteDeck } from '../actions/decks'
+import { handleDeleteDeck } from '../actions/shared'
 import studyImage from '../images/studyImage.jpg'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card

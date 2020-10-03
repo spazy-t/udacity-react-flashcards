@@ -92,6 +92,17 @@ export function removeDeck(deckId) {
         })
 }
 
+export function removeDeckFromResults(deckId) {
+    return getResults()
+    .then((data) => {
+        delete data[deckId]
+        AsyncStorage.setItem(RESULTS_STORAGE_KEY, JSON.stringify(data))
+        .then(
+            getResults().then(data => console.log('after removing deck from results: ', data))
+        )
+    })
+}
+
 //gets the current data from storage, grabs the relevant deck's card array and filters out the card to be removed
 //than it merges the updated array into the relevant deck's card property.
 export function removeCardFromDeck(deckId, cardIndex) {
