@@ -128,6 +128,14 @@ export const QuizAnswerText = styled(StyledText)`
     text-transform: uppercase;
 `
 
+export const QuizSubText = styled.Text`
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+`
+
 /**
  * Stylesheet styles
  */

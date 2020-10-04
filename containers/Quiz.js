@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Alert,
         ImageBackground,
-        Animated } from 'react-native'
+        Animated,
+        Text } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
@@ -13,6 +14,7 @@ import { RegularBtn,
         StyledText,
         HeaderView,
         QuizAnswerText,
+        QuizSubText,
         styles } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 import studyImage from '../images/studyImage.jpg'
@@ -155,6 +157,7 @@ class Quiz extends Component {
                                 : quizCards[cardNum].answer
                             }
                         </Animated.Text>
+                        <QuizSubText>{`${cardNum + 1} of ${quizCards.length}`}</QuizSubText>
                     </HeaderView>
                     <JustTextBtn onPress={this.handleCardFlip}>
                         <StyledText>{showAnswer === false
