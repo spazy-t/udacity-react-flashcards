@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, ImageBackground, Animated, View } from 'react-native'
+import { Alert, ImageBackground, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
@@ -22,39 +22,39 @@ class Quiz extends Component {
 
         navigation.setOptions({ headerTitle: `Quiz: ${id}`})
 
-        Animated.spring(this.state.pos, {
-            toValue: { x: 0, y: 0},
-            friction: 5,
-            tension: 30,
-            useNativeDriver: false
-        }).start()
+        this.handleTextAnimation(0).start()
     }
+
+    //helper method to avoid duplication of text animation
+    handleTextAnimation = (xPos) => {
+        return Animated.spring(this.state.pos, {
+             toValue: { x: xPos, y: 0 },
+             friction: 10,
+             tension: 80,
+             useNativeDriver: false
+         })
+     }
 
     //helper to move to next card q+a
     nextCard = () => {
-        this.setState((prevState) => ({
-            cardNum: prevState.cardNum += 1
-        }))
+        this.handleTextAnimation(-450)
+        .start(() => {
+            this.setState((prevState) => ({
+                cardNum: prevState.cardNum += 1,
+                showAnswer: false
+            }))
+            this.handleTextAnimation(0).start()
+        })
     }
 
-    //TODO: place animations into one configurable function to call instead of duplicating
     //flip answer and question onPress, show answer/question and change btn text
     handleCardFlip = () => {
-        Animated.spring(this.state.pos, {
-            toValue: { x: 450, y: 0 },
-            friction: 10,
-            tension: 80,
-            useNativeDriver: false
-        }).start(() => {
+        this.handleTextAnimation(450)
+        .start(() => {
             this.setState((prevState) => ({
                 showAnswer: !prevState.showAnswer
             }))
-            Animated.spring(this.state.pos, {
-                toValue: { x: 0, y: 0 },
-                friction: 10,
-                tension: 80,
-                useNativeDriver: false
-            }).start()
+            this.handleTextAnimation(0).start()
         })
     }
 

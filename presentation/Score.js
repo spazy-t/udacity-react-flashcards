@@ -1,17 +1,29 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { StyledView, HeaderText } from '../styled/common'
+import { Animated } from 'react-native'
+import {  HeaderView } from '../styled/common'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { handleSaveResult } from '../actions/results'
 import PropTypes from 'prop-types'
 
 class Score extends Component {
+    state = {
+        pos: new Animated.ValueXY({ x: 0, y: -100 })
+    }
+
     componentDidMount() {
         const { handleSaveResult, deckId, score, totalCards, currentBest, lastDate, timesPlayed } = this.props
         //user has completed quiz therefore clear notification to study for the day
         clearLocalNotification()
         .then(setLocalNotification())
+
+        //animate in the score text
+        Animated.spring(this.state.pos, {
+            toValue: { x: 0, y: 0 },
+            friction: 6,
+            tension: 90,
+            useNativeDriver: false
+        }).start()
 
         //checks current deck results best score and if it's better or score hasn't been set yet,
         //add current score and todays date to store state
@@ -32,7 +44,12 @@ class Score extends Component {
         const { totalCards, score } = this.props
 
         return(
-            <HeaderText>{`You're score ${score} / ${totalCards}`}</HeaderText>
+            <HeaderView>
+                <Animated.Text
+                    style={[{ color: '#fff', fontSize: 25, fontWeight: 'bold', textAlign: 'center'}, this.state.pos.getLayout()]}>
+                    {`You're score ${score} / ${totalCards}`}
+                </Animated.Text>
+            </HeaderView>
         )
     }
 }
