@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Alert, Animated, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
-import { RegularBtn, StyledView, StyledText, HeaderText } from '../styled/common'
+import { RegularBtn,
+        StyledView,
+        StyledText,
+        HeaderText,
+        styles } from '../styled/common'
 import { handleDeleteDeck } from '../actions/shared'
 import studyImage from '../images/studyImage.jpg'
 import PropTypes from 'prop-types'
@@ -62,7 +66,7 @@ class DeckDetails extends Component {
         const { navigation, deckToShow } = this.props
         //show deck information in ui, on buttons pass in params so corresponding component knows which deck to deal with in store state
         return(
-            <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+            <ImageBackground source={studyImage} style={styles.backgroundImage}>
                 <StyledView>
                     <HeaderText>{deckToShow.cards.length === 1
                         ? `${deckToShow.cards.length} Card`

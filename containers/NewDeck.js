@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddDeck } from '../actions/decks'
-import { StyledSubmitBtn, StyledSubmitText, StyledInput, StyledView } from '../styled/common'
+import { StyledSubmitBtn,
+        StyledSubmitText,
+        StyledInput,
+        StyledView } from '../styled/common'
 import PropTypes from 'prop-types'
 
 class NewDeck extends Component {

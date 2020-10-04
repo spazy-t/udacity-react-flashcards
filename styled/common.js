@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { StyleSheet } from 'react-native'
 
 export const StyledTouchable = styled.TouchableOpacity`
     border: 1px solid #000;
@@ -121,3 +122,21 @@ export const StyledText = styled.Text`
     font-size: 18px;
     align-self: center;
 `
+
+/**
+ * Stylesheet styles
+ */
+
+ export const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center'
+    },
+    animationText: {
+        color: '#fff',
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    }
+ })

@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
-import { Alert, ImageBackground, Animated } from 'react-native'
+import { Alert,
+        ImageBackground,
+        Animated } from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
-import { RegularBtn, StyledView, CorrectBtn, InCorrectBtn, JustTextBtn, StyledText, HeaderView } from '../styled/common'
+import { RegularBtn,
+        StyledView,
+        CorrectBtn,
+        InCorrectBtn,
+        JustTextBtn,
+        StyledText,
+        HeaderView,
+        styles } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 import studyImage from '../images/studyImage.jpg'
 import PropTypes from 'prop-types'
@@ -114,13 +123,13 @@ class Quiz extends Component {
         //if no cards in the deck show NoCards component
         if(quizCards.length === 0) {
             return(
-                <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                <ImageBackground source={studyImage} style={styles.backgroundImage}>
                     <NoCards nav={navigation} id={id} />
                 </ImageBackground>
             )
         } else if(cardNum === quizCards.length) {
             return(
-                <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                <ImageBackground source={studyImage} style={styles.backgroundImage}>
                     <StyledView>
                         <Score score={score} totalCards={quizCards.length} deckId={id} />
                         <RegularBtn onPress={this.resetQuiz}>
@@ -136,10 +145,10 @@ class Quiz extends Component {
         //show card question and all response buttons, if the user clicks to show answer show
         //the answer at top and change button text
         return(
-            <ImageBackground source={studyImage} style={{ flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+            <ImageBackground source={studyImage} style={styles.backgroundImage}>
                 <StyledView>
                     <HeaderView>
-                        <Animated.Text style={[{ color: '#fff', fontSize: 25, fontWeight: 'bold', textAlign: 'center'}, this.state.pos.getLayout()]}>
+                        <Animated.Text style={[styles.animationText, this.state.pos.getLayout()]}>
                             {showAnswer === false
                                 ? quizCards[cardNum].question
                                 : quizCards[cardNum].answer

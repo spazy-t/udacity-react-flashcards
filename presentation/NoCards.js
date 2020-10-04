@@ -1,5 +1,8 @@
 import React from 'react'
-import { StyledView, StyledTitle, RegularBtn, StyledText } from '../styled/common'
+import { StyledView,
+        StyledTitle,
+        RegularBtn,
+        StyledText } from '../styled/common'
 import PropTypes from 'prop-types'
 
 export default function NoCards(props) {

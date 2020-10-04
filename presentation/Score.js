@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Animated } from 'react-native'
-import {  HeaderView } from '../styled/common'
+import { HeaderView, styles } from '../styled/common'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { handleSaveResult } from '../actions/results'
 import PropTypes from 'prop-types'
@@ -46,7 +46,7 @@ class Score extends Component {
         return(
             <HeaderView>
                 <Animated.Text
-                    style={[{ color: '#fff', fontSize: 25, fontWeight: 'bold', textAlign: 'center'}, this.state.pos.getLayout()]}>
+                    style={[styles.animationText, this.state.pos.getLayout()]}>
                     {`You're score ${score} / ${totalCards}`}
                 </Animated.Text>
             </HeaderView>
