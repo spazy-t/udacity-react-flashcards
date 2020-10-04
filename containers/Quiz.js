@@ -12,6 +12,7 @@ import { RegularBtn,
         JustTextBtn,
         StyledText,
         HeaderView,
+        QuizAnswerText,
         styles } from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 import studyImage from '../images/studyImage.jpg'
@@ -163,10 +164,10 @@ class Quiz extends Component {
                         </StyledText>
                     </JustTextBtn>
                     <CorrectBtn onPress={() => this.handleCardComplete('correct')}>
-                        <StyledText>Correct</StyledText>
+                        <QuizAnswerText>Correct</QuizAnswerText>
                     </CorrectBtn>
                     <InCorrectBtn onPress={this.handleCardComplete}>
-                        <StyledText>Incorrect</StyledText>
+                        <QuizAnswerText>Incorrect</QuizAnswerText>
                     </InCorrectBtn>
                     <JustTextBtn onPress={this.handleDeleteCard}>
                         <StyledText>Delete Card</StyledText>

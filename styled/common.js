@@ -40,13 +40,13 @@ export const DashDeck = styled(StyledTouchable)`
 export const CorrectBtn = styled(StyledTouchable)`
     background-color: #99ff99;
     border-color: #0f0;
-    border-radius: 15px;
+    border-radius: 5px;
 `
 
 export const InCorrectBtn = styled(StyledTouchable)`
-    background-color: #ff99ff;
-    border-color: #ff33ff;
-    border-radius: 15px;
+    background-color: #fa323c;
+    border-color: #fa020f;
+    border-radius: 5px;
 `
 
 export const JustTextBtn = styled(StyledTouchable)`
@@ -119,8 +119,13 @@ export const DashTitle = styled(StyledTitle)`
 `
 
 export const StyledText = styled.Text`
-    font-size: 18px;
+    font-size: 22px;
     align-self: center;
+`
+
+export const QuizAnswerText = styled(StyledText)`
+    font-size: 26px;
+    text-transform: uppercase;
 `
 
 /**

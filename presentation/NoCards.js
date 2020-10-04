@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyledView,
-        StyledTitle,
         RegularBtn,
-        StyledText } from '../styled/common'
+        StyledText,
+        HeaderText } from '../styled/common'
 import PropTypes from 'prop-types'
 
 export default function NoCards(props) {
@@ -10,7 +10,7 @@ export default function NoCards(props) {
 
     return(
         <StyledView>
-            <StyledTitle>No cards!</StyledTitle>
+            <HeaderText>No cards!</HeaderText>
             <RegularBtn onPress={() => nav.navigate('NewCard', { id: id })}>
                 <StyledText>Add Card</StyledText>
             </RegularBtn>

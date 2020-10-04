@@ -20,7 +20,7 @@ class DeckDetails extends Component {
     componentDidMount() {
         const { navigation, deckToShow } = this.props
         //change stack navigation header title to that of the relevant deck being shown
-        navigation.setOptions({ headerTitle: `${deckToShow.title} Deck`})
+        navigation.setOptions({ headerTitle: `${deckToShow.title} Deck` })
 
         Animated.spring(this.state.pos, {
             toValue: { x: 0, y: 0 },
@@ -100,7 +100,7 @@ function mapStateToProps({ decks }, { route }) {
 
 DeckDetails.propTypes = {
     navigation: PropTypes.object.isRequired,
-    deckToShow: PropTypes.object.isRequired,
+    deckToShow: PropTypes.object,
     handleDeleteDeck: PropTypes.func.isRequired
 }
 

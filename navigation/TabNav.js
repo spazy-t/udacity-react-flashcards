@@ -10,15 +10,15 @@ const Tabs = createMaterialTopTabNavigator()
 //set up a tab nav which is pulled in from the stacknav
 const TabNav = () => (
     <Fragment>
-        <View style={{ height: 25, backgroundColor: '#b3ffb3' }}>
-            <StatusBar translucent backgroundColor='#99ff99' barStyle='dark-content' />
+        <View style={{ height: 25, backgroundColor: '#fff' }}>
+            <StatusBar translucent backgroundColor='#fff' barStyle='dark-content' />
         </View>
             <Tabs.Navigator
                 sceneContainerStyle={{backgroundColor: 'rgba(0, 0, 0, 0)'}}
                 tabBarOptions={{ labelStyle: { fontSize: 18, fontWeight: 'bold' },
-                    style: { backgroundColor: '#b3ffb3' },
+                    style: { backgroundColor: 'rgba(255, 255, 255, 0.9)' },
                     activeTintColor: '#000',
-                    indicatorStyle: { backgroundColor: '#ff99ff'} }} >
+                    indicatorStyle: { backgroundColor: '#000'} }} >
                 <Tabs.Screen name='DeckList' component={DeckList} />
                 <Tabs.Screen name='NewDeck' component={NewDeck} />
                 <Tabs.Screen name='Results' component={ResultsBoard} />
