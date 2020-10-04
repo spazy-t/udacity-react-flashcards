@@ -4,6 +4,7 @@ import { saveResultToStorage } from '../utils/api'
 /**
  * Thunk actions
  */
+//handles quiz result data for asyncstorage saving and then call regular action.
  export const handleSaveResult = (result) => {
      return (dispatch) => {
         saveResultToStorage(result)
@@ -17,6 +18,7 @@ import { saveResultToStorage } from '../utils/api'
 /**
  * regular actions
  */
+//dispatches initial received results data to reducer
 export const receiveResultsData = (results) => {
     return {
         type: RECEIVE_RESULTS,
@@ -24,6 +26,7 @@ export const receiveResultsData = (results) => {
     }
 }
 
+//dispatches quiz result data to reducer to save into store state
 export const saveResult = (resultData) => {
     return {
         type: SAVE_RESULT,

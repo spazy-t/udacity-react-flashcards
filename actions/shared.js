@@ -1,32 +1,48 @@
-import { getResults, getDecks, saveDummyData, removeDeck, removeDeckFromResults } from '../utils/api'
+import { 
+    getResults,
+    getDecks,
+    saveDummyData,
+    removeDeck,
+    removeDeckFromResults
+} from '../utils/api'
 import { receiveDecksData, addDeck } from './decks'
 import { receiveResultsData } from './results'
 import { DELETE_DECK } from '../constants/actionTypes'
 
+//for dev purposes, gives initial decks data inn order to see how app works
 const dummyData = {
-    java: {
-        title: 'java',
+    History: {
+        title: 'History',
         cards: [
             {
-                question: 'Will trump get a second term?',
-                answer: 'No!'
+                question: 'Who were the white roses in the war of the roses?',
+                answer: 'Yorkshire'
             },
             {
-                question: 'which is better: Android or iOS?',
-                answer: 'Android'
+                question: 'How many wives did King Henry the 8th have?',
+                answer: 'Six'
             },
             {
-                question: 'front end or back end developer?',
-                answer: 'front'
+                question: 'Who discovered Penicillin?',
+                answer: 'Alexander Fleming'
             },
         ]
     },
-    javaScript: {
-        title: 'javaScript',
-        cards: []
+    Space: {
+        title: 'Space',
+        cards: [
+            {
+                question: 'What temperature is the hottest planet in the solar system?',
+                answer: '450 degrees C'
+            },
+            {
+                question: 'How much does a NASA space suit cost?',
+                answer: '$12,000,000'
+            }
+        ]
     },
-    python: {
-        title: 'python',
+    Programming: {
+        title: 'Programming',
         cards: []
     },
 }
@@ -34,6 +50,8 @@ const dummyData = {
 /**
  * Thunk actions
  */
+//grabs decks and results data from asyncStorage, if any, and passes it to relevant regular actions to store in store state
+//if no data in storage, use dummy data for testing purposes.
 export const handleInitData = () => {
     return (dispatch) => {
         Promise.all([getDecks(), getResults()])
@@ -75,6 +93,7 @@ export const handleDeleteDeck = (deckId) => {
 /**
  * regular actions
  */
+//a shared action for both results and decks to delete referenced deck via reducers
 export const deleteDeck = (deckId) => {
     return {
         type: DELETE_DECK,

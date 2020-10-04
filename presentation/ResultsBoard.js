@@ -1,8 +1,10 @@
 import React from 'react'
-import { StyledScroll,
-        StyledTitle,
-        StyledText,
-        ResultContainer } from '../styled/common'
+import {
+    StyledScroll,
+    StyledTitle,
+    StyledText,
+    ResultContainer
+} from '../styled/common'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 

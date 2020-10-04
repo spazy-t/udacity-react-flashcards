@@ -1,10 +1,13 @@
 import React from 'react'
-import { StyledView,
-        RegularBtn,
-        StyledText,
-        HeaderText } from '../styled/common'
+import {
+    StyledView,
+    RegularBtn,
+    StyledText,
+    HeaderText
+} from '../styled/common'
 import PropTypes from 'prop-types'
 
+//if no cards in deck this component is nested in quiz screen and provides btns to add a card to deck or return to deck list
 export default function NoCards(props) {
     const { nav, id } = props
 

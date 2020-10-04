@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddDeck } from '../actions/decks'
-import { StyledSubmitBtn,
-        StyledSubmitText,
-        StyledInput,
-        StyledView } from '../styled/common'
+import {
+    StyledSubmitBtn,
+    StyledSubmitText,
+    StyledInput,
+    StyledView,
+    styles
+} from '../styled/common'
 import PropTypes from 'prop-types'
 
 class NewDeck extends Component {
@@ -64,7 +67,7 @@ class NewDeck extends Component {
                 <StyledSubmitBtn
                     onPress={this.onSubmit}
                     disabled={disabledSubmit}
-                    style={disabledSubmit ? {backgroundColor: '#ccc', opacity: 0.6} : null}>
+                    style={disabledSubmit ? styles.SubmitBtn : null}>
                     <StyledSubmitText>Create Deck</StyledSubmitText>
                 </StyledSubmitBtn>
             </StyledView>
@@ -72,6 +75,7 @@ class NewDeck extends Component {
     }
 }
 
+//grabs current deck titles to check against when creating a new one
 function mapStateToProps({ decks }) {
     const currentDecks = Object.keys(decks)
 
@@ -86,4 +90,5 @@ NewDeck.propTypes = {
     currentDecks: PropTypes.array.isRequired
 }
 
+//passes in decks state data to props and thunk action function to save new deck title
 export default connect(mapStateToProps, { handleAddDeck })(NewDeck)

@@ -7,6 +7,7 @@ import { handleSaveResult } from '../actions/results'
 import PropTypes from 'prop-types'
 
 class Score extends Component {
+    //init animation position for score text at top of screen
     state = {
         pos: new Animated.ValueXY({ x: 0, y: -100 })
     }
@@ -25,12 +26,12 @@ class Score extends Component {
             useNativeDriver: false
         }).start()
 
-        //checks current deck results best score and if it's better or score hasn't been set yet,
-        //add current score and todays date to store state
+        //helper method, checks current deck results best score and if it's better or score hasn't been set yet,
+        //add current score and todays date to store state. Returns a boolean to state wether to save all info
         const newTopScore = () => {
             return score >= currentBest || currentBest === null
         }
-        //dispatches thunk action to save new top score or just times played + 1 if not top score
+        //dispatches thunk action to save new top score or just times played + 1 if not top score (both storage and store state)
         handleSaveResult({
             deckId,
             score: newTopScore() === true ? score : currentBest,
@@ -40,6 +41,7 @@ class Score extends Component {
         })
     }
 
+    //renders score text which is nested in relevant quiz screen when called, animates in
     render() {
         const { totalCards, score } = this.props
 
@@ -54,6 +56,7 @@ class Score extends Component {
     }
 }
 
+//grabs state date and best score to compare with this quiz score, and times played to plus 1
 function mapStateToProps({ results }, { deckId }) {
     return {
         currentBest: results[deckId] !== undefined ? results[deckId].score : null,
@@ -72,4 +75,5 @@ Score.propTypes = {
     handleSaveResult: PropTypes.func.isRequired
 }
 
+//maps required comparison state to props and dispatchable thunk action to save results to storage and state
 export default connect(mapStateToProps, { handleSaveResult })(Score)

@@ -1,6 +1,9 @@
 import styled from 'styled-components/native'
 import { StyleSheet } from 'react-native'
 
+/**
+ * styled components
+ */
 export const StyledTouchable = styled.TouchableOpacity`
     border: 1px solid #000;
     margin: 10px 0;
@@ -139,7 +142,6 @@ export const QuizSubText = styled.Text`
 /**
  * Stylesheet styles
  */
-
  export const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,
@@ -151,5 +153,9 @@ export const QuizSubText = styled.Text`
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center'
+    },
+    SubmitBtn: {
+        backgroundColor: '#ccc',
+        opacity: 0.6
     }
  })

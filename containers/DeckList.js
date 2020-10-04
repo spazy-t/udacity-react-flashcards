@@ -9,12 +9,13 @@ import PropTypes from 'prop-types'
 //A list of all the available decks, each has a container showing the initial data
 //navigation is sent through as the container doesn't inherit that component
 class DeckList extends Component {
-    //calls thunk action creator to grab asyncstorage data, if null puts in dummy data for Store also.
+    //calls thunk action creator to grab asyncstorage data and sets notification to study.
     componentDidMount() {
         setLocalNotification()
         this.props.handleInitData()
     }
 
+    //renders each deck from data via store state and contains them in a styled scorll view
     render() {
         const { currentDecks, navigation } = this.props
         
@@ -33,6 +34,7 @@ class DeckList extends Component {
     }
 }
 
+//grabs current list of decks in store state
 function mapStateToProps({ decks }) {
     return {
         currentDecks: { ...decks }

@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
-import { Alert, Animated, ImageBackground } from 'react-native'
+import {
+    Alert,
+    Animated,
+    ImageBackground
+} from 'react-native'
 import { connect } from 'react-redux'
-import { RegularBtn,
-        StyledView,
-        StyledText,
-        HeaderText,
-        styles } from '../styled/common'
+import {
+    RegularBtn,
+    StyledView,
+    StyledText,
+    HeaderText,
+    styles
+} from '../styled/common'
 import { handleDeleteDeck } from '../actions/shared'
 import studyImage from '../images/studyImage.jpg'
 import PropTypes from 'prop-types'

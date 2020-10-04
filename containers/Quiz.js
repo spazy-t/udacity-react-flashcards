@@ -1,38 +1,41 @@
 import React, { Component } from 'react'
-import { Alert,
-        ImageBackground,
-        Animated,
-        Text } from 'react-native'
+import {
+    Alert,
+    ImageBackground,
+    Animated
+} from 'react-native'
 import { connect } from 'react-redux'
 import Score from '../presentation/Score'
 import NoCards from '../presentation/NoCards'
-import { RegularBtn,
-        StyledView,
-        CorrectBtn,
-        InCorrectBtn,
-        JustTextBtn,
-        StyledText,
-        HeaderView,
-        QuizAnswerText,
-        QuizSubText,
-        styles } from '../styled/common'
+import {
+    RegularBtn,
+    StyledView,
+    CorrectBtn,
+    InCorrectBtn,
+    JustTextBtn,
+    StyledText,
+    HeaderView,
+    QuizAnswerText,
+    QuizSubText,
+    styles
+} from '../styled/common'
 import { handleDeleteCard } from '../actions/decks'
 import studyImage from '../images/studyImage.jpg'
 import PropTypes from 'prop-types'
 
 class Quiz extends Component {
-    //local state to hold score to show at the end of quiz
+    //local state to hold score to show at the end of quiz and animation starting point
     state = {
         score: 0,
         cardNum: 0,
         showAnswer: false,
         pos: new Animated.ValueXY({ x: -500, y: 0 })
     }
-    //when mounted chnage the stack screen header
+    //when mounted chnage the stack screen header and start 1st text animation
     componentDidMount() {
         const { navigation, id } = this.props
 
-        navigation.setOptions({ headerTitle: `Quiz: ${id}`})
+        navigation.setOptions({ headerTitle: `Quiz: ${id}` })
 
         this.handleTextAnimation(0).start()
     }
@@ -59,7 +62,7 @@ class Quiz extends Component {
         })
     }
 
-    //flip answer and question onPress, show answer/question and change btn text
+    //flip answer and question onPress, show answer or question and change btn text
     handleCardFlip = () => {
         this.handleTextAnimation(450)
         .start(() => {
@@ -70,11 +73,11 @@ class Quiz extends Component {
         })
     }
 
-    //callback fnct to move on to next card via state carNum(?), when incorrect / correct is pressed
+    //callback fnct to move on to next card via state cardNum, when incorrect / correct is pressed
     handleCardComplete = (response = '') => {
         const { quizCards } = this.props
         const { cardNum } = this.state
-        //if the presss event comes form the 'correct' btn add one to score
+        //if the press event comes form the 'correct' btn add one to score
         if(response === 'correct') {
             this.setState((prevState) => ({
                 score: prevState.score += 1
@@ -122,8 +125,8 @@ class Quiz extends Component {
         const { quizCards, navigation, id } = this.props
         const { cardNum, showAnswer, score } = this.state
 
-        //if all cards have been shown, show score for the quiz
         //if no cards in the deck show NoCards component
+        //if all cards have been shown, show score for the quiz
         if(quizCards.length === 0) {
             return(
                 <ImageBackground source={studyImage} style={styles.backgroundImage}>
@@ -181,7 +184,8 @@ class Quiz extends Component {
     }
 }
 
-//map state to grab the relevant deck cards (questions + answers)
+//map state to grab the relevant deck cards (questions + answers),
+//grabs id from route params to send through for navigation purposes
 function mapStateToProps({ decks }, { route }) {
     const { id } = route.params
 
@@ -198,4 +202,5 @@ Quiz.propTypes = {
     navigation: PropTypes.object.isRequired
 }
 
+//required state mapped to props and dispatchable thunk function for deleting card from storage and state
 export default connect(mapStateToProps, { handleDeleteCard })(Quiz)
