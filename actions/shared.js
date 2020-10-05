@@ -71,11 +71,6 @@ export const handleInitData = () => {
     }
 }
 
-/**
- * //TODO: to solve re-adding to store state if error from async, get copy of deck from storgae and save here
- * then catch can use populated copy of deck to pass to new action + reducer bits to re-save and not just title
- */
-
 //Call AsyncStorage api method to delete a deck and then calls redux store to do same if successful
 export const handleDeleteDeck = (deckId) => {
     return (dispatch) => {
