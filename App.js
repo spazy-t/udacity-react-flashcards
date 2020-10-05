@@ -9,8 +9,8 @@ import middleware from './middleware'
 
 /**
  * pulls in the stacknav to show the default screens
- * uses redux provider to make connecting to store availbel within the app
- * creates the store to pass in with relevant reducer and middleware
+ * uses redux provider to make connecting to store availabel within the app
+ * creates the store and passes in the relevant reducers and middleware
  */
 export default function App() {
   return (

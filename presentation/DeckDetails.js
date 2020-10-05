@@ -18,16 +18,17 @@ import PropTypes from 'prop-types'
 
 //Details screen for an individual deck, shows the title and number of cards, buttons to start quiz or add card
 class DeckDetails extends Component {
+    //local state for start position for animation
     state = {
         pos: new Animated.ValueXY({ x: 0, y: -300 })
     }
 
-    //start animation when component mounts
     componentDidMount() {
         const { navigation, deckToShow } = this.props
         //change stack navigation header title to that of the relevant deck being shown
         navigation.setOptions({ headerTitle: `${deckToShow.title} Deck` })
 
+        //start animation when component mounts
         Animated.spring(this.state.pos, {
             toValue: { x: 0, y: 0 },
             delay: 300,
@@ -70,7 +71,7 @@ class DeckDetails extends Component {
 
     render() {
         const { navigation, deckToShow } = this.props
-        //show deck information in ui, on buttons pass in params so corresponding component knows which deck to deal with in store state
+        //show deck information in ui, on buttons pass in id / action param so corresponding component knows which deck to deal with in store state
         return(
             <ImageBackground source={studyImage} style={styles.backgroundImage}>
                 <StyledView>
@@ -96,6 +97,7 @@ class DeckDetails extends Component {
     }
 }
 
+//map deck object from state decks object to get corresponding card number etc
 function mapStateToProps({ decks }, { route }) {
     const { id } = route.params
 
@@ -110,4 +112,5 @@ DeckDetails.propTypes = {
     handleDeleteDeck: PropTypes.func.isRequired
 }
 
+//connect state data and thunk action to delete deck to props
 export default connect(mapStateToProps, { handleDeleteDeck })(DeckDetails)

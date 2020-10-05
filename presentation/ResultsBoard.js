@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+//displays recently completed quiz's. Shows how many times played, best score and what date
 const ResultsBoard = (props) => {
     const { results } = props
 
@@ -25,6 +26,7 @@ const ResultsBoard = (props) => {
     )
 }
 
+//grabs the results data from state to determine which quiz's have been completed
 function mapStateToProps({ results }) {
     return {
         results

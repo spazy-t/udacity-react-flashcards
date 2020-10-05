@@ -2,7 +2,8 @@ import { RECEIVE_DECKS, ADD_DECK, ADD_CARD, DELETE_DECK, DELETE_CARD } from '../
 
 /**
  * reducer to take in relevant actions and place in data in cloned store obj before replacing the current store state
- * receive current decks from AsyncStorage, add new user created deck, add new card/question to a specified deck from user
+ * receive current decks from AsyncStorage, add new user created deck, add new card/question to a specified deck from user,
+ * delete card or deck when requested and validated by user
  */
 const decks = (state = {}, action) => {
     switch(action.type) {

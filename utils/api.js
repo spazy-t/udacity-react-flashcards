@@ -6,7 +6,6 @@ import { DECKS_STORAGE_KEY, RESULTS_STORAGE_KEY } from '../constants/actionTypes
  */
 //gets deck state from storage and returns the data (if any)
 export function getDecks() {
-    //AsyncStorage.clear()
     return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then((result) => {
         const data = JSON.parse(result)
@@ -14,6 +13,7 @@ export function getDecks() {
     })
 }
 
+//grabs results data, if any, from asyncStorage and passes it back to caller
 export function getResults() {
     return AsyncStorage.getItem(RESULTS_STORAGE_KEY)
     .then((result) => {
@@ -25,7 +25,7 @@ export function getResults() {
 /**
  * save functions results
  */
-
+//is passed a results data object which is then added to storage data object
  export function saveResultToStorage(resultData) {
     return getResults()
     .then(data => {
@@ -35,9 +35,6 @@ export function getResults() {
                 ...resultData
             }
         }))
-        .then(
-            getResults().then(data => console.log('results after saving one: ', data))
-        )
     })
  }
 
@@ -49,10 +46,8 @@ export function saveDummyData(dummyData) {
     AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify({
         ...dummyData
     }))
-    .then(
-        getDecks().then(data => console.log('after saveing dummy data: ', data))
-    )
 }
+
 //merges a new deck obj into the existing deck data in storage
 export function saveNewDeck(deckInfo) {
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
@@ -61,20 +56,15 @@ export function saveNewDeck(deckInfo) {
             cards: []
         }
     }))
-    .then(
-        getDecks().then(data => console.log('after save new deck: ', data))
-    )
 }
+
 //grabs the current data from storage, adds new card obj to releveant item cards array and replaces storage data with the updated version.
 export function saveCardToDeck(deckId, cardInfo) {
     return getDecks()
-        .then((data) => {
-            data[deckId].cards.push(cardInfo)
-            AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
-            .then(
-                getDecks().then(data => console.log('after saving new card to deck: ', data))
-            )
-        })
+    .then((data) => {
+        data[deckId].cards.push(cardInfo)
+        AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
+    })
 }
 
 /**
@@ -83,23 +73,18 @@ export function saveCardToDeck(deckId, cardInfo) {
 //gets the current data from storage, deletes the releveant deck from it and replaces the data with the updated version.
 export function removeDeck(deckId) {
     return getDecks()
-        .then((data) => {
-            delete data[deckId]
-            AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
-            .then(
-                getDecks().then(data => console.log('after removing deck: ', data))
-            )
-        })
+    .then((data) => {
+        delete data[deckId]
+        AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
+    })
 }
 
+//is passed a deckId string to identify the corresponding deck object to remove from results data object
 export function removeDeckFromResults(deckId) {
     return getResults()
     .then((data) => {
         delete data[deckId]
         AsyncStorage.setItem(RESULTS_STORAGE_KEY, JSON.stringify(data))
-        .then(
-            getResults().then(data => console.log('after removing deck from results: ', data))
-        )
     })
 }
 
@@ -107,16 +92,13 @@ export function removeDeckFromResults(deckId) {
 //than it merges the updated array into the relevant deck's card property.
 export function removeCardFromDeck(deckId, cardIndex) {
     return getDecks()
-        .then((data) => {
-            const newData = data[deckId].cards.filter((card, index) => index !== cardIndex)
-            AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
-                [deckId]: {
-                    title: deckId,
-                    cards: newData
-                }
-            }))
-            .then(
-                getDecks().then(data => console.log('after removing card from deck: ', data))
-            )
-        })
+    .then((data) => {
+        const newData = data[deckId].cards.filter((card, index) => index !== cardIndex)
+        AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+            [deckId]: {
+                title: deckId,
+                cards: newData
+            }
+        }))
+    })
 }

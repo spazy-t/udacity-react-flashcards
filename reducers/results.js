@@ -1,5 +1,7 @@
 import { SAVE_RESULT, RECEIVE_RESULTS, DELETE_DECK } from '../constants/actionTypes'
 
+//reducer for results slice of store state, initially populates with data from storage,
+//saves a new result when quiz is completed, deletes a result via deckId when user deletes deck
 const results = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_RESULTS:
