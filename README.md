@@ -1,44 +1,52 @@
-# My Universal React Project
+# Udacity React-Native Mobile Flashcards
+ 
+## Table of contents
+ 
+* [Overview](#overview)
+* [Instructions](#instructions)
+* [Resources](#resources)
+ 
+## Overview
+ 
+This project is the final one in the Udacity React Nanodegree and has been built and tested for use on an Android device.
+It replicates the flashcard method of studying. When opened it will default to a list of decks available to study,
+if there are no current decks it will populate the list with dummy data.
+ 
+The user can click on a deck in the list to navigate to a screen where they can take a quiz on the topic, add a card/question
+to the deck or delete the deck. When a quiz is taken they can view the answer to each question and report correctly or incorrectly
+guessing the answer. Once completed the user is shown their score against the number of cards and their result is recorded.
+ 
+The Results screen shows a results card for each quiz that has been completed. It highlights the top score and when
+it was recorded, also, how many times the quiz has been taken. There is also a daily notification to study that is cleared and
+reset for the next day when a quiz is completed.
+ 
+The user can also navigate to the new Deck screen and enter a new Deck title, if the title already exists then they will be prompted
+to choose another. Otherwise, it's saved into the deck list and displayed on the list screen.
+ 
+The project uses: React-Native, Redux, AsyncStorage, and styled components. It has primarily been built for Android as I don't
+currently have access to Mac software or hardware. I also added the extra features of being able to delete a card or whole deck,
+with validation from the user, and a whole extra data set to hold and display results data from the completion of quizzes.
+ 
+ 
+## Instructions
+ 
+* Once the files have been copied over use `yarn add` or `npm i` to install all dependencies.
+* Then, `yarn start` or `npm start` to run the expo server.
+* If running on an Android device download the Expo app onto the device.
+* Once a QR code has appeared in Expo choose 'Tunnel' to run the app on an Android device and scan the QR code. Alternatively
+choose 'Local' to run the app on an emulator.
 
-<p>
-  <!-- iOS -->
-  <a href="https://itunes.apple.com/app/apple-store/id982107779">
-    <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  </a>
-  <!-- Android -->
-  <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample">
-    <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  </a>
-  <!-- Web -->
-  <a href="https://docs.expo.io/workflow/web/">
-    <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-  </a>
-</p>
+ 
+## Resources
 
-## 🚀 How to use
+[gitHub](https://github.com/ayushmaz/mobile-flashcards/blob/master/reducers/index.js) - solution to delete a deck from current state (25/09/2020)
 
-- Install packages with `yarn` or `npm install`.
-  - If you have native iOS code run `npx pod-install`
-- Run `yarn start` to start the bundler.
-- Open the project in a React runtime to try it:
-  - iOS: [Client iOS](https://itunes.apple.com/app/apple-store/id982107779)
-  - Android: [Client Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample)
-  - Web: Any web browser
+[Pixabay](https://pixabay.com/illustrations/geometry-mathematics-cube-1023846/) - Image used for background (30/09/2020)
 
-## Adding Native Code
+[MDN](https://developer.mozilla.org/en-US/) - for general definitions and use of syntax
 
-This project can be run from a web browser or the Expo client app. You may find that you want to add more native code later on. You can do this by ejecting the project and rebuilding it yourself.
+[stack-overflow](https://stackoverflow.com/) - for general help and use of syntax
 
-- Run `yarn eject` to create the native projects.
-- You can still run your project in the web browser or Expo client, you just won't be able to access any new native modules you add.
+[Redux Docs](https://redux.js.org/) - for looking up best practices and syntax
 
-## Publishing
-
-- Deploy the native app to the App store and Play store using this guide: [Deployment](https://docs.expo.io/distribution/app-stores/).
-- Deploy the website using this guide: [Web deployment](https://docs.expo.io/distribution/publishing-websites/).
-
-## 📝 Notes
-
-- Learn more about [Universal React](https://docs.expo.io/).
-- See what API and components are [available in the React runtimes](https://docs.expo.io/versions/latest/).
-- Find out more about developing apps and websites: [Guides](https://docs.expo.io/guides/).
+[React Native Docs](https://reactnative.dev/docs/getting-started) - for looking up best practices and syntax
