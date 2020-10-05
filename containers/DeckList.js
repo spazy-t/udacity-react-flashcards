@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DeckContainer from '../presentation/DeckContainer'
 import { connect } from 'react-redux'
 import { handleInitData } from '../actions/shared'
-import { StyledScroll, DashDeck } from '../styled/common'
+import { StyledScroll, DashDeck, HeaderText } from '../styled/common'
 import { setLocalNotification } from '../utils/helpers'
 import PropTypes from 'prop-types'
 
@@ -18,11 +18,18 @@ class DeckList extends Component {
     //renders each deck from data via store state and contains them in a styled scorll view
     render() {
         const { currentDecks, navigation } = this.props
+        const decksKeys = Object.keys(currentDecks).sort()
         
-        //TODO: stop reordering when a new card is added, maybe a for loop instead of map?
+        //if the deck list is empty prompt user to make one
+        if(decksKeys.length === 0) {
+            return(
+                <HeaderText>No Decks, go make one in the New Deck Tab</HeaderText>
+            )
+        }
+        
         return(
             <StyledScroll contentContainerStyle={{ alignItems: 'center' }}>
-                {currentDecks !== null &&(Object.keys(currentDecks).map((deck) => (
+                {currentDecks !== null &&(decksKeys.map((deck) => (
                     <DashDeck key={deck} onPress={() => navigation.navigate('DeckDetails', { id: deck })}>
                         <DeckContainer
                                title={currentDecks[deck].title}

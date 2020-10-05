@@ -3,7 +3,8 @@ import {
     StyledScroll,
     StyledTitle,
     StyledText,
-    ResultContainer
+    ResultContainer,
+    HeaderText
 } from '../styled/common'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -11,10 +12,18 @@ import PropTypes from 'prop-types'
 //displays recently completed quiz's. Shows how many times played, best score and what date
 const ResultsBoard = (props) => {
     const { results } = props
+    const resultsKeys = Object.keys(results).sort()
+
+    //if no results have been saved show prompt to take a quiz
+    if(resultsKeys.length === 0) {
+        return(
+            <HeaderText>Take a quiz to show results</HeaderText>
+        )
+    }
 
     return(
         <StyledScroll contentContainerStyle={{ alignItems: 'center' }}>
-            {Object.keys(results).map((result) => (
+            {resultsKeys.map((result) => (
                 <ResultContainer key={result}>
                     <StyledTitle>{`${results[result].deckId} Deck`}</StyledTitle>
                     <StyledText>{`Top score: ${results[result].score} out of ${results[result].cardNum}`}</StyledText>

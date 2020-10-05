@@ -49,7 +49,7 @@ class NewCard extends Component {
             }))
 
             //go back to deck details screen
-            navigation.goBack()
+            navigation.navigate('DeckDetails', { id: id })
         }
     }
 

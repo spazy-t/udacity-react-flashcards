@@ -34,7 +34,7 @@ with validation from the user, and a whole extra data set to hold and display re
 * Then, `yarn start` or `npm start` to run the expo server.
 * If running on an Android device download the Expo app onto the device.
 * Once a QR code has appeared in Expo choose 'Tunnel' to run the app on an Android device and scan the QR code. Alternatively
-choose 'Local' to run the app on an emulator.
+choose to run the app on an emulator.
 
  
 ## Resources

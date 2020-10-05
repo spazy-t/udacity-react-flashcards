@@ -34,7 +34,8 @@ export const RegularBtn = styled(StyledTouchable)`
 
 export const DashDeck = styled(StyledTouchable)`
     width: 80%;
-    height: 100px;
+    height: auto;
+    min-height: 100px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: #fff;
@@ -81,7 +82,6 @@ export const StyledView = styled.View`
 
 export const StyledScroll = styled.ScrollView`
     flex: 1;
-    margin-top: 15px;
 `
 
 export const StyledInput = styled.TextInput`
@@ -99,6 +99,7 @@ export const StyledTitle = styled.Text`
     align-self: center
     font-size: 25px;
     font-weight: bold;
+    text-align: center;
 `
 
 export const HeaderText = styled(StyledTitle)`
@@ -119,6 +120,7 @@ export const HeaderView = styled.View`
 
 export const DashTitle = styled(StyledTitle)`
     font-size: 30px;
+    text-align: center;
 `
 
 export const StyledText = styled.Text`
@@ -157,5 +159,9 @@ export const QuizSubText = styled.Text`
     SubmitBtn: {
         backgroundColor: '#ccc',
         opacity: 0.6
+    },
+    statusBar: {
+        height: 25,
+        backgroundColor: '#fff'
     }
  })

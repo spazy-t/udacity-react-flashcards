@@ -69,8 +69,8 @@ Score.propTypes = {
     deckId: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     totalCards: PropTypes.number.isRequired,
-    currentBest: PropTypes.number.isRequired,
-    lastDate: PropTypes.string.isRequired,
+    currentBest: PropTypes.number,
+    lastDate: PropTypes.string,
     timesPlayed: PropTypes.number.isRequired,
     handleSaveResult: PropTypes.func.isRequired
 }
