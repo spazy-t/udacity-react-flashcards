@@ -3,7 +3,7 @@ import { View, StatusBar } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import DeckList from '../containers/DeckList'
 import NewDeck from '../containers/NewDeck'
-import ResultsBoard from '../presentation/ResultsBoard'
+import ResultsBoard from '../screens/ResultsBoard'
 import { styles } from '../styled/common'
 
 //init tab navigation to be nested in stack nav

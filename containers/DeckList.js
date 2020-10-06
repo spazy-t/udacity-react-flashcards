@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DeckContainer from '../presentation/DeckContainer'
+import DeckContainer from '../screens/DeckContainer'
 import { connect } from 'react-redux'
 import { handleInitData } from '../actions/shared'
 import { StyledScroll, DashDeck, HeaderText } from '../styled/common'

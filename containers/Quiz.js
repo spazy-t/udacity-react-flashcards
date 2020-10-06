@@ -5,8 +5,8 @@ import {
     Animated
 } from 'react-native'
 import { connect } from 'react-redux'
-import Score from '../presentation/Score'
-import NoCards from '../presentation/NoCards'
+import Score from '../screens/Score'
+import NoCards from '../screens/NoCards'
 import {
     RegularBtn,
     StyledView,
